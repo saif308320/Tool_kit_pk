@@ -1,0 +1,116 @@
+import { useState } from 'react'
+import Select from '../components/Select.jsx'
+
+const TYPE_OPTIONS = [
+  { value: 'monthly', label: 'Monthly', icon: '📅' },
+  { value: 'annual', label: 'Annual', icon: '🗓️' },
+]
+
+function computeAnnualTax(annualIncome) {
+  let tax = 0
+  let slabLabel = ''
+  if (annualIncome <= 600000) { tax = 0; slabLabel = '0% slab' }
+  else if (annualIncome <= 1200000) { tax = (annualIncome - 600000) * 0.01; slabLabel = '1% slab' }
+  else if (annualIncome <= 2200000) { tax = 6000 + (annualIncome - 1200000) * 0.11; slabLabel = '11% slab' }
+  else if (annualIncome <= 3200000) { tax = 116000 + (annualIncome - 2200000) * 0.23; slabLabel = '23% slab' }
+  else if (annualIncome <= 4100000) { tax = 346000 + (annualIncome - 3200000) * 0.30; slabLabel = '30% slab' }
+  else { tax = 616000 + (annualIncome - 4100000) * 0.35; slabLabel = '35% slab' }
+
+  let surcharge = 0
+  if (annualIncome > 10000000) surcharge = tax * 0.09
+  return { tax: tax + surcharge, slabLabel, surcharge }
+}
+
+export default function Tax() {
+  const [type, setType] = useState('monthly')
+  const [salary, setSalary] = useState('')
+  const [result, setResult] = useState(null)
+
+  function calculate() {
+    const inputVal = parseFloat(salary) || 0
+    const annualIncome = type === 'monthly' ? inputVal * 12 : inputVal
+    const { tax, slabLabel, surcharge } = computeAnnualTax(annualIncome)
+    const monthlyTax = tax / 12
+    const netMonthly = (annualIncome / 12) - monthlyTax
+    setResult({ monthlyTax, annualTax: tax, netMonthly, slabLabel, surcharge, annualIncome })
+  }
+
+  return (
+    <div className="calc-wrap">
+      <div className="calc-header">
+        <h1 className="en-only">Salary Tax Calculator</h1>
+        <h1 className="ur-only ur-text">تنخواہ ٹیکس کیلکولیٹر</h1>
+        <p className="calc-intro en-only">Based on the latest FBR tax slabs for Tax Year 2025–26.</p>
+        <p className="calc-intro ur-only ur-text">ایف بی آر کے تازہ ترین ٹیکس سلیبز برائے سال 2025-26 کے مطابق۔</p>
+      </div>
+
+      <div className="calc-box">
+        <div className="field">
+          <label><span className="en-only">Salary type</span><span className="ur-only ur-text">تنخواہ کی قسم</span></label>
+          <Select options={TYPE_OPTIONS} value={type} onChange={setType} />
+        </div>
+        <div className="field">
+          <label>
+            <span className="en-only">{type === 'monthly' ? 'Monthly salary (PKR)' : 'Annual salary (PKR)'}</span>
+            <span className="ur-only ur-text">{type === 'monthly' ? 'ماہانہ تنخواہ (روپے)' : 'سالانہ تنخواہ (روپے)'}</span>
+          </label>
+          <input type="number" value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="e.g. 250000" />
+        </div>
+
+        <button className="btn" onClick={calculate}>
+          <span className="en-only">Calculate Tax</span>
+          <span className="ur-only ur-text">ٹیکس کا حساب لگائیں</span>
+        </button>
+
+        {result && (
+          <div className="result-box show">
+            <div className="label en-only">Monthly Tax Deduction</div>
+            <div className="label ur-only ur-text">ماہانہ ٹیکس کٹوتی</div>
+            <div className="value">Rs. {Math.round(result.monthlyTax).toLocaleString()}</div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginTop: 16, flexWrap: 'wrap' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 600 }}>
+                  <span className="en-only">Annual Tax</span><span className="ur-only ur-text">سالانہ ٹیکس</span>
+                </div>
+                <div style={{ fontSize: 17, fontWeight: 700 }}>Rs. {Math.round(result.annualTax).toLocaleString()}</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 600 }}>
+                  <span className="en-only">Net Monthly</span><span className="ur-only ur-text">ماہانہ نیٹ</span>
+                </div>
+                <div style={{ fontSize: 17, fontWeight: 700 }}>Rs. {Math.round(result.netMonthly).toLocaleString()}</div>
+              </div>
+            </div>
+            <div className="badge-pill info">
+              <span className="badge-icon">🧾</span>
+              <span className="en-only">
+                You fall in the {result.slabLabel} based on your annual income of Rs. {Math.round(result.annualIncome).toLocaleString()}.
+                {result.surcharge > 0 && ` A 9% surcharge (Rs. ${Math.round(result.surcharge).toLocaleString()}) also applies.`}
+              </span>
+              <span className="ur-only ur-text">آپ {result.slabLabel} میں آتے ہیں۔</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <article className="article">
+        <div className="en-only">
+          <h2>Current FBR Tax Slabs (Tax Year 2025–26)</h2>
+          <p>
+            Up to Rs. 600,000/year — 0%<br/>
+            Rs. 600,001 – 1,200,000 — 1% of amount exceeding Rs. 600,000<br/>
+            Rs. 1,200,001 – 2,200,000 — Rs. 6,000 + 11%<br/>
+            Rs. 2,200,001 – 3,200,000 — Rs. 116,000 + 23%<br/>
+            Rs. 3,200,001 – 4,100,000 — Rs. 346,000 + 30%<br/>
+            Above Rs. 4,100,000 — Rs. 616,000 + 35%
+          </p>
+          <p style={{ fontSize: 13, color: 'var(--muted)' }}>Note: Tax slabs may change annually — verify with FBR's official circular.</p>
+        </div>
+        <div className="ur-only ur-text">
+          <h2>موجودہ ایف بی آر ٹیکس سلیبز</h2>
+          <p>600,000 روپے تک — 0%<br/>600,001 – 1,200,000 — 1%<br/>1,200,001 – 2,200,000 — 6,000 + 11%</p>
+        </div>
+      </article>
+    </div>
+  )
+}
