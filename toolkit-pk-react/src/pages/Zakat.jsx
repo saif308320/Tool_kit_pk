@@ -73,7 +73,8 @@ const NISAB_OPTIONS = [
   { value: 'gold', label: 'Gold Nisab (7.5 tola)', icon: <IconCoinGold /> },
 ]
 
-const GOLDAPI_KEY = 'PASTE_YOUR_GOLDAPI_KEY_HERE'
+/* ✅ Your live GoldAPI key goes here — this is the ONLY place it should be */
+const GOLDAPI_KEY = 'goldapi-a68de977d18973cdc946adb7c8c408f6-io'
 const GRAMS_PER_TOLA = 11.6638
 const CACHE_KEY = 'toolkitpk_rates_cache'
 const CACHE_HOURS = 6
