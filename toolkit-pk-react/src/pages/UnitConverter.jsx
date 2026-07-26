@@ -96,17 +96,24 @@ export default function UnitConverter() {
         </div>
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>Supported conversions</h2>
-          <p><strong>Length</strong> — meters, km, cm, feet, inches, miles, yards</p>
-          <p><strong>Weight</strong> — kg, grams, pounds, ounces, tons, tola</p>
-          <p><strong>Temperature</strong> — Celsius, Fahrenheit, Kelvin</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>دستیاب تبدیلیاں</h2>
-        </div>
-      </article>
+     <article className="article">
+  <div className="en-only">
+    <h2>Supported conversions</h2>
+    <p><strong>Length</strong> — meters, km, cm, feet, inches, miles, yards</p>
+    <p><strong>Weight</strong> — kg, grams, pounds, ounces, tons, tola</p>
+    <p><strong>Temperature</strong> — Celsius, Fahrenheit, Kelvin</p>
+    <h2>Why unit conversion matters</h2>
+    <p>Pakistan commonly mixes metric units (kilograms, meters) with traditional units like tola for gold and silver, while international recipes, products, or travel often use imperial units like pounds, feet, or Fahrenheit. This tool bridges that gap instantly, so you don't need to memorize conversion formulas or search separately for each unit pair.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>دستیاب تبدیلیاں</h2>
+    <p><strong>لمبائی</strong> — میٹر، کلومیٹر، سینٹی میٹر، فٹ، انچ، میل، گز</p>
+    <p><strong>وزن</strong> — کلوگرام، گرام، پاؤنڈ، اونس، ٹن، تولہ</p>
+    <p><strong>درجہ حرارت</strong> — سیلسیس، فارن ہائیٹ، کیلون</p>
+    <h2>یونٹ تبدیل کرنا کیوں ضروری ہے؟</h2>
+    <p>پاکستان میں میٹرک اور روایتی یونٹس (جیسے تولہ) دونوں استعمال ہوتے ہیں، جبکہ بین الاقوامی مصنوعات میں امپیریل یونٹس عام ہیں۔ یہ ٹول فوری اور درست تبدیلی فراہم کرتا ہے۔</p>
+  </div>
+</article>
     </div>
   )
 }

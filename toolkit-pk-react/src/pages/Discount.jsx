@@ -91,15 +91,20 @@ export default function Discount() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>How discount calculation works</h2>
-          <p>When you know the discount percentage, the final price is the original minus that percentage.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>ڈسکاؤنٹ کا حساب کیسے کام کرتا ہے</h2>
-        </div>
-      </article>
+     <article className="article">
+  <div className="en-only">
+    <h2>How discount calculation works</h2>
+    <p>When you know the discount percentage, the final price is the original price minus that percentage. Formula: Final Price = Original Price − (Original Price × Discount% ÷ 100).</p>
+    <h2>Example</h2>
+    <p>If a jacket originally costs Rs. 4,000 and is on a 25% sale, you save Rs. 1,000, making the final price Rs. 3,000. This calculator does that math instantly, and also works in reverse — enter the final price to find out what discount was applied.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>ڈسکاؤنٹ کا حساب کیسے کام کرتا ہے</h2>
+    <p>جب آپ ڈسکاؤنٹ کی فیصد جانتے ہیں، تو حتمی قیمت اصل قیمت میں سے وہ فیصد منہا کر کے حاصل ہوتی ہے۔</p>
+    <h2>مثال</h2>
+    <p>اگر کسی جیکٹ کی اصل قیمت 4,000 روپے ہے اور 25% سیل ہے، تو آپ 1,000 روپے بچائیں گے، اور حتمی قیمت 3,000 روپے ہوگی۔</p>
+  </div>
+</article>
     </div>
   )
 }

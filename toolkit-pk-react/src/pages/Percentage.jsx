@@ -108,17 +108,22 @@ export default function Percentage() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>Three ways to calculate percentages</h2>
-          <p><strong>X% of Y</strong> — find a portion of a total.</p>
-          <p><strong>X is what % of Y</strong> — find what share one number represents.</p>
-          <p><strong>% Increase/Decrease</strong> — find the percentage change between two values.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>فیصد حساب کرنے کے تین طریقے</h2>
-        </div>
-      </article>
+    <article className="article">
+  <div className="en-only">
+    <h2>Three ways to calculate percentages</h2>
+    <p><strong>X% of Y</strong> — find a portion of a total. Formula: (X ÷ 100) × Y. Example: 20% of 500 = 100.</p>
+    <p><strong>X is what % of Y</strong> — find what share one number represents. Formula: (X ÷ Y) × 100.</p>
+    <p><strong>% Increase/Decrease</strong> — find the percentage change between two values. Formula: ((New − Old) ÷ Old) × 100.</p>
+    <h2>Where percentages are used every day</h2>
+    <p>Percentages show up everywhere — calculating discounts while shopping, working out exam scores, comparing salary raises, tracking loan interest, or understanding statistics in the news. Getting comfortable with the three formulas above covers almost every everyday percentage question.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>فیصد حساب کرنے کے تین طریقے</h2>
+    <p><strong>X فیصد از Y</strong> — کسی کل رقم کا حصہ معلوم کرنا۔</p>
+    <p><strong>X، Y کا کتنا فیصد ہے</strong> — ایک نمبر دوسرے کا کتنا حصہ ہے یہ معلوم کرنا۔</p>
+    <p><strong>فیصد اضافہ/کمی</strong> — دو اقدار کے درمیان فیصد تبدیلی معلوم کرنا۔</p>
+  </div>
+</article>
     </div>
   )
 }

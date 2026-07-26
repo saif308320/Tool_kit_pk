@@ -154,15 +154,21 @@ export default function Currency() {
       </div>
 
       <article className="article">
-        <div className="en-only">
-          <h2>How does this converter work?</h2>
-          <p>This tool fetches live exchange rates automatically, using real market data updated regularly.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>یہ کنورٹر کیسے کام کرتا ہے؟</h2>
-          <p>یہ ٹول خودکار طور پر لائیو ایکسچینج ریٹ حاصل کرتا ہے۔</p>
-        </div>
-      </article>
+  <div className="en-only">
+    <h2>How does this converter work?</h2>
+    <p>This tool fetches live foreign exchange rates automatically from real-time market data, so the conversion you see reflects current rates rather than outdated fixed values. You can convert PKR to USD, or between dozens of other world currencies.</p>
+    <h2>Why do exchange rates change?</h2>
+    <p>Currency values fluctuate constantly based on factors like interest rates, inflation, trade balances, political stability, and global demand for a currency. Because of this, the same amount of PKR can buy a different amount of USD from one day to the next.</p>
+    <h2>When to use a currency converter</h2>
+    <p>Whether you're sending remittances, planning to travel, shopping from an international store, or just curious about today's rate, a quick and accurate currency converter saves you from manually checking multiple sources.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>یہ کنورٹر کیسے کام کرتا ہے؟</h2>
+    <p>یہ ٹول خودکار طور پر لائیو ایکسچینج ریٹ حاصل کرتا ہے، تاکہ آپ کو ہمیشہ موجودہ مارکیٹ ریٹ کے مطابق درست نتیجہ ملے۔</p>
+    <h2>ایکسچینج ریٹ کیوں بدلتا ہے؟</h2>
+    <p>کرنسی کی قیمت سود کی شرح، مہنگائی، تجارتی توازن اور عالمی طلب جیسے عوامل کی بنیاد پر روزانہ بدلتی رہتی ہے۔</p>
+  </div>
+</article>
     </div>
   )
 }

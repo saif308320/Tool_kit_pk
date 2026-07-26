@@ -93,24 +93,28 @@ export default function Tax() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>Current FBR Tax Slabs (Tax Year 2025–26)</h2>
-          <p>
-            Up to Rs. 600,000/year — 0%<br/>
-            Rs. 600,001 – 1,200,000 — 1% of amount exceeding Rs. 600,000<br/>
-            Rs. 1,200,001 – 2,200,000 — Rs. 6,000 + 11%<br/>
-            Rs. 2,200,001 – 3,200,000 — Rs. 116,000 + 23%<br/>
-            Rs. 3,200,001 – 4,100,000 — Rs. 346,000 + 30%<br/>
-            Above Rs. 4,100,000 — Rs. 616,000 + 35%
-          </p>
-          <p style={{ fontSize: 13, color: 'var(--muted)' }}>Note: Tax slabs may change annually — verify with FBR's official circular.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>موجودہ ایف بی آر ٹیکس سلیبز</h2>
-          <p>600,000 روپے تک — 0%<br/>600,001 – 1,200,000 — 1%<br/>1,200,001 – 2,200,000 — 6,000 + 11%</p>
-        </div>
-      </article>
+    <article className="article">
+  <div className="en-only">
+    <h2>How is income tax calculated in Pakistan?</h2>
+    <p>Pakistan uses a progressive tax slab system for salaried individuals, meaning your income is taxed at increasing rates as it crosses each slab threshold — not a single flat rate on your entire salary. Only the portion of income above each threshold is taxed at the next higher rate.</p>
+    <h2>Current FBR Tax Slabs (Tax Year 2025–26)</h2>
+    <p>
+      Up to Rs. 600,000/year — 0%<br/>
+      Rs. 600,001 – 1,200,000 — 1% of amount exceeding Rs. 600,000<br/>
+      Rs. 1,200,001 – 2,200,000 — Rs. 6,000 + 11%<br/>
+      Rs. 2,200,001 – 3,200,000 — Rs. 116,000 + 23%<br/>
+      Rs. 3,200,001 – 4,100,000 — Rs. 346,000 + 30%<br/>
+      Above Rs. 4,100,000 — Rs. 616,000 + 35%
+    </p>
+    <p style={{ fontSize: 13, color: 'var(--muted)' }}>Note: Tax slabs may change annually — verify with FBR's official circular.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>پاکستان میں انکم ٹیکس کیسے شمار ہوتا ہے؟</h2>
+    <p>پاکستان میں تنخواہ دار افراد کے لیے پروگریسو ٹیکس سلیب سسٹم استعمال ہوتا ہے، یعنی جیسے جیسے آمدنی بڑھتی ہے، اضافی رقم پر زیادہ شرح سے ٹیکس لگتا ہے۔</p>
+    <h2>موجودہ ایف بی آر ٹیکس سلیبز</h2>
+    <p>600,000 روپے تک — 0%<br/>600,001 – 1,200,000 — 1%<br/>1,200,001 – 2,200,000 — 6,000 + 11%</p>
+  </div>
+</article>
     </div>
   )
 }

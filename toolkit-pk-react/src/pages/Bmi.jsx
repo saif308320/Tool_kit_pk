@@ -110,17 +110,23 @@ export default function Bmi() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>BMI Categories</h2>
-          <p>Below 18.5 — Underweight<br/>18.5–24.9 — Normal<br/>25.0–29.9 — Overweight<br/>30.0+ — Obese</p>
-          <p style={{ fontSize: 13, color: 'var(--muted)' }}>For personalized health advice, consult a doctor.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>بی ایم آئی کیٹیگریز</h2>
-          <p>18.5 سے کم — کم وزن<br/>18.5–24.9 — نارمل<br/>25.0–29.9 — زیادہ وزن<br/>30.0+ — موٹاپا</p>
-        </div>
-      </article>
+     <article className="article">
+  <div className="en-only">
+    <h2>What is BMI?</h2>
+    <p>Body Mass Index (BMI) is a simple screening measure that uses your height and weight to estimate whether your body weight falls in a healthy range. It's calculated by dividing your weight in kilograms by the square of your height in meters.</p>
+    <h2>BMI Categories</h2>
+    <p>Below 18.5 — Underweight<br/>18.5–24.9 — Normal<br/>25.0–29.9 — Overweight<br/>30.0+ — Obese</p>
+    <h2>Limitations of BMI</h2>
+    <p>BMI doesn't distinguish between muscle and fat, so athletes or very muscular individuals may show a higher BMI without excess body fat. It also doesn't account for age, sex, or fat distribution. BMI is a useful starting point, not a full diagnosis.</p>
+    <p style={{ fontSize: 13, color: 'var(--muted)' }}>For personalized health advice, consult a doctor.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>بی ایم آئی کیا ہے؟</h2>
+    <p>باڈی ماس انڈیکس (بی ایم آئی) ایک سادہ پیمانہ ہے جو آپ کے قد اور وزن کی بنیاد پر یہ اندازہ لگاتا ہے کہ آپ کا وزن صحت مند حد میں ہے یا نہیں۔</p>
+    <h2>بی ایم آئی کیٹیگریز</h2>
+    <p>18.5 سے کم — کم وزن<br/>18.5–24.9 — نارمل<br/>25.0–29.9 — زیادہ وزن<br/>30.0+ — موٹاپا</p>
+  </div>
+</article>
     </div>
   )
 }

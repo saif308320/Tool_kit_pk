@@ -327,19 +327,23 @@ export default function Zakat() {
       </div>
 
       <article className="article">
-        <div className="en-only">
-          <h2>What is Zakat?</h2>
-          <p>Zakat is one of the five pillars of Islam and is obligatory on every Muslim whose total wealth exceeds the Nisab threshold for one full lunar year.</p>
-          <h2>What is Nisab?</h2>
-          <p>Nisab is the minimum amount of wealth a Muslim must own before Zakat becomes obligatory, commonly based on 52.5 tola of silver.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>زکوٰۃ کیا ہے؟</h2>
-          <p>زکوٰۃ اسلام کے پانچ ارکان میں سے ایک ہے اور ہر اس مسلمان پر فرض ہے جس کی کل دولت نصاب کی حد سے زیادہ ہو۔</p>
-          <h2>نصاب کیا ہے؟</h2>
-          <p>نصاب وہ کم از کم مقدار ہے جو ایک مسلمان کے پاس ہونی چاہیے تاکہ اس پر زکوٰۃ فرض ہو۔</p>
-        </div>
-      </article>
+  <div className="en-only">
+    <h2>What is Zakat?</h2>
+    <p>Zakat is one of the five pillars of Islam and is obligatory on every Muslim whose total wealth exceeds the Nisab threshold for one full lunar (Hijri) year. It is calculated as 2.5% of your total qualifying wealth — including gold, silver, cash, savings, and investments — and is meant to purify wealth while supporting those in need.</p>
+    <h2>What is Nisab?</h2>
+    <p>Nisab is the minimum amount of wealth a Muslim must own before Zakat becomes obligatory. It is commonly based on 52.5 tola (612.35 grams) of silver, or alternatively 7.5 tola (87.48 grams) of gold. Most scholars recommend using the silver Nisab, since it is lower in value and allows more people to fulfill this obligation.</p>
+    <h2>Who must pay Zakat?</h2>
+    <p>Zakat is due on any adult Muslim of sound mind whose total wealth — after subtracting debts — stays above the Nisab threshold for a full lunar year. This includes cash in hand, bank balances, gold, silver, and business or investment assets, but generally excludes your primary home, personal vehicle, and everyday household items.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>زکوٰۃ کیا ہے؟</h2>
+    <p>زکوٰۃ اسلام کے پانچ ارکان میں سے ایک ہے اور ہر اس مسلمان پر فرض ہے جس کی کل دولت ایک مکمل قمری سال تک نصاب کی حد سے زیادہ رہے۔ یہ کل مالیت کا 2.5 فیصد ہوتی ہے، جس میں سونا، چاندی، نقدی اور سرمایہ کاری شامل ہیں۔</p>
+    <h2>نصاب کیا ہے؟</h2>
+    <p>نصاب وہ کم از کم مقدار ہے جو ایک مسلمان کے پاس ہونی چاہیے تاکہ اس پر زکوٰۃ فرض ہو۔ عام طور پر یہ 52.5 تولہ چاندی یا 7.5 تولہ سونے کی مالیت پر مبنی ہوتا ہے۔</p>
+    <h2>زکوٰۃ کس پر فرض ہے؟</h2>
+    <p>زکوٰۃ ہر بالغ اور عاقل مسلمان پر فرض ہے جس کی کل دولت، قرض منہا کرنے کے بعد، ایک مکمل سال تک نصاب سے زیادہ رہے۔</p>
+  </div>
+</article>
     </div>
   )
 }

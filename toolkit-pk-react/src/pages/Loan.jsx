@@ -90,17 +90,22 @@ export default function Loan() {
           </div>
         )}
       </div>
-
-      <article className="article">
-        <div className="en-only">
-          <h2>What is EMI?</h2>
-          <p>EMI is the fixed amount you pay every month toward a loan until it is fully repaid.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>ای ایم آئی کیا ہے؟</h2>
-          <p>ای ایم آئی وہ مقررہ رقم ہے جو آپ ہر ماہ قرض کی ادائیگی کے لیے دیتے ہیں۔</p>
-        </div>
-      </article>
+<article className="article">
+  <div className="en-only">
+    <h2>What is EMI?</h2>
+    <p>EMI (Equated Monthly Installment) is the fixed amount you pay every month toward a loan — whether it's for a car, house, or personal loan — until the entire amount, including interest, is fully repaid. Each EMI payment covers a portion of the principal (the amount you borrowed) and a portion of the interest charged by the lender.</p>
+    <h2>How is EMI calculated?</h2>
+    <p>EMI is calculated using the loan amount (principal), the annual interest rate, and the loan tenure (in months). In the early months of a loan, a larger share of your EMI goes toward interest; as the loan progresses, more of it goes toward the principal. This is known as amortization.</p>
+    <h2>Fixed-rate vs reducing-balance loans</h2>
+    <p>Most banks in Pakistan use the reducing-balance method, meaning interest is charged only on the outstanding principal, not the original loan amount. This usually results in a lower total interest cost compared to flat-rate loans.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>ای ایم آئی کیا ہے؟</h2>
+    <p>ای ایم آئی وہ مقررہ رقم ہے جو آپ ہر ماہ قرض کی ادائیگی کے لیے دیتے ہیں — چاہے وہ گاڑی، گھر یا ذاتی قرض ہو — جب تک پوری رقم سود سمیت ادا نہ ہو جائے۔ ہر قسط میں اصل رقم کا کچھ حصہ اور سود کا کچھ حصہ شامل ہوتا ہے۔</p>
+    <h2>ای ایم آئی کا حساب کیسے لگایا جاتا ہے؟</h2>
+    <p>ای ایم آئی کا حساب قرض کی رقم، سالانہ شرح سود، اور قرض کی مدت (مہینوں میں) کی بنیاد پر لگایا جاتا ہے۔ شروع کے مہینوں میں زیادہ رقم سود میں جاتی ہے، اور بعد میں زیادہ رقم اصل قرض کم کرنے میں۔</p>
+  </div>
+</article>
     </div>
   )
 }

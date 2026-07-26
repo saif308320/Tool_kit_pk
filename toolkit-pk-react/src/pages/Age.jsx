@@ -222,16 +222,20 @@ export default function Age() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>How is exact age calculated?</h2>
-          <p>This calculator counts full years, months, and remaining days between your date of birth and today, along with fun extras like total days lived, your zodiac sign, and how far you are through your current birthday year.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>صحیح عمر کیسے شمار کی جاتی ہے؟</h2>
-          <p>یہ کیلکولیٹر آپ کی تاریخ پیدائش اور آج کی تاریخ کے درمیان مکمل سال، مہینے اور دن شمار کرتا ہے۔</p>
-        </div>
-      </article>
+     <article className="article">
+  <div className="en-only">
+    <h2>How is exact age calculated?</h2>
+    <p>This calculator counts the full years, months, and remaining days between your date of birth and today's date, giving you a precise breakdown instead of just a rounded age in years.</p>
+    <h2>Why calculate your exact age?</h2>
+    <p>Knowing your exact age is useful for job applications, school admissions, visa forms, legal documents, or simply for personal curiosity like counting down to a milestone birthday. Some official forms require your age in years, months, and days rather than just years.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>صحیح عمر کیسے شمار کی جاتی ہے؟</h2>
+    <p>یہ کیلکولیٹر آپ کی تاریخ پیدائش اور آج کی تاریخ کے درمیان مکمل سال، مہینے اور دن شمار کرتا ہے۔</p>
+    <h2>صحیح عمر معلوم کرنا کیوں ضروری ہے؟</h2>
+    <p>یہ نوکری کی درخواستوں، داخلوں، ویزا فارمز اور دیگر سرکاری دستاویزات کے لیے مفید ہے، جہاں سال، مہینے اور دن میں عمر درکار ہوتی ہے۔</p>
+  </div>
+</article>
     </div>
   )
 }

@@ -132,17 +132,20 @@ export default function Gpa() {
         )}
       </div>
 
-      <article className="article">
-        <div className="en-only">
-          <h2>How percentage converts to GPA</h2>
-          <p>Most Pakistani universities use a 4.0 scale where 85%+ maps to 4.0 GPA.</p>
-          <h2>How CGPA is calculated</h2>
-          <p>CGPA is the credit-hour-weighted average of your GPA across all semesters.</p>
-        </div>
-        <div className="ur-only ur-text">
-          <h2>فیصد جی پی اے میں کیسے تبدیل ہوتا ہے</h2>
-        </div>
-      </article>
+     <article className="article">
+  <div className="en-only">
+    <h2>How percentage converts to GPA</h2>
+    <p>Most Pakistani universities use a 4.0 scale where 85%+ typically maps to a 4.0 GPA, with proportionally lower GPA values as the percentage decreases. Different universities may use slightly different conversion tables, so always check your specific institution's official policy for exact cutoffs.</p>
+    <h2>How CGPA is calculated</h2>
+    <p>CGPA (Cumulative Grade Point Average) is the credit-hour-weighted average of your GPA across all completed semesters. This means a semester with more credit hours has a proportionally larger effect on your overall CGPA than a semester with fewer credit hours.</p>
+  </div>
+  <div className="ur-only ur-text">
+    <h2>فیصد جی پی اے میں کیسے تبدیل ہوتا ہے</h2>
+    <p>زیادہ تر پاکستانی جامعات 4.0 سکیل استعمال کرتی ہیں جہاں 85% یا اس سے زیادہ نمبر 4.0 جی پی اے کے برابر ہوتے ہیں۔</p>
+    <h2>سی جی پی اے کیسے شمار ہوتا ہے</h2>
+    <p>سی جی پی اے تمام مکمل شدہ سمسٹرز کے کریڈٹ اوورز کی بنیاد پر اوسط جی پی اے ہوتا ہے۔</p>
+  </div>
+</article>
     </div>
   )
 }
