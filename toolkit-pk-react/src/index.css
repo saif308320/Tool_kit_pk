@@ -827,16 +827,10 @@ body.lang-ur .cselect-option {
 
 /* ============================================================
    ZAKAT PAGE — PREMIUM ADDITIONS
-   (icons, gold/silver rate cards, status line, polish)
-   These rules load AFTER the ones above, so they safely
-   override the plain versions of .btn, .section-title, etc.
-   Only affects elements that use the new class names below —
-   every other tool page on the site is untouched.
    ============================================================ */
 
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Dark "fetch rate" button, now with proper icon + text alignment */
 .btn-dark {
   background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
   background-size: 160% 160%;
@@ -850,7 +844,6 @@ body.lang-ur .cselect-option {
 .btn-dark:hover { box-shadow: 0 10px 26px -6px rgba(15, 23, 42, 0.6); }
 .btn-dark:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
 
-/* Status line under fetch button */
 .status-line {
   display: flex;
   align-items: center;
@@ -867,7 +860,6 @@ body.lang-ur .cselect-option {
 .status-warn { background: #fffbeb; color: #b45309; }
 .status-loading { background: #f1f5f9; color: #475569; }
 
-/* Section title icon badge (Zakat page only — has .title-icon child) */
 .section-title:has(.title-icon) { display: flex; align-items: center; gap: 8px; }
 .title-icon {
   width: 22px;
@@ -881,7 +873,6 @@ body.lang-ur .cselect-option {
 .title-icon-gold   { background: linear-gradient(135deg, #fdf3d8, #fbe6ad); }
 .title-icon-silver { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); }
 
-/* Gold / Silver rate cards — subtle colored panels instead of plain fields */
 .rate-card {
   border: 1.5px solid var(--border);
   border-radius: 14px;
@@ -914,18 +905,14 @@ body.lang-ur .cselect-option {
   color: var(--text);
 }
 
-/* Badge pill icon alignment (now SVG, not emoji) */
 .badge-pill { gap: 7px; }
 .badge-pill .badge-icon { display: inline-flex; align-items: center; }
 
-/* Nisab "due" note gets a check icon */
 .nisab-note.due { display: flex; align-items: center; gap: 8px; }
 .nisab-note .note-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
 
-/* Buttons with an icon inside (Zakat "fetch rate" / result badges) keep row alignment */
 .btn-dark, .btn:has(svg) { display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-/* Result box gets a touch more premium polish */
 .result-box {
   position: relative;
   overflow: hidden;
@@ -951,12 +938,8 @@ body.lang-ur .cselect-option {
 }
 /* ============================================================
    HOME + FOOTER — PREMIUM v2
-   Paste this whole block at the END of your index.css
-   (replaces the flat SVG icon look with 3D icon badges,
-   and gives the footer a dark, elevated premium theme)
    ============================================================ */
 
-/* ---------- Hero: kicker pill + glow blobs + trust row ---------- */
 .hero-premium { padding-top: 30px; position: relative; }
 
 .hero-glow {
@@ -1030,7 +1013,6 @@ body.lang-ur .cselect-option {
   .trust-pill { font-size: 11.5px; padding: 6px 12px; }
 }
 
-/* ---------- Tool grid: 3D icon badges (same visual family as header logo) ---------- */
 .tool-card-premium {
   position: relative;
   padding-right: 46px;
@@ -1080,7 +1062,6 @@ body.lang-ur .tool-card-premium { padding-right: 24px; padding-left: 46px; }
 .glow-rose::before   { background: radial-gradient(circle, #fb7185, transparent 72%); }
 .glow-violet::before { background: radial-gradient(circle, #a78bfa, transparent 72%); }
 
-/* Card top accent bar — thin gradient line that sweeps in on hover */
 .tool-card-premium::after {
   content: '';
   position: absolute;
@@ -1100,8 +1081,6 @@ body.lang-ur .tool-card-premium::after { transform-origin: right; }
   background: linear-gradient(165deg, #ffffff, #fbfdfd);
 }
 
-/* Premium hover arrow — real SVG glyph (mask), not a text character,
-   so it renders crisp and identical across every browser/font */
 .tool-card-arrow {
   position: absolute;
   top: 20px;
@@ -1150,7 +1129,6 @@ body.lang-ur .tool-card-arrow.ur-only::before { transform: scaleX(-1); }
 
 .tool-grid-premium .tool-card-premium { animation: fadeUp 0.5s ease both; }
 
-/* ---------- Home: "All Calculators" section heading ---------- */
 .tools-section { margin-top: 8px; position: relative; }
 .tools-section-head { text-align: center; margin-bottom: 34px; }
 .tools-kicker {
@@ -1187,7 +1165,6 @@ body.lang-ur .tool-card-arrow.ur-only::before { transform: scaleX(-1); }
   .tools-section-head { margin-bottom: 24px; }
 }
 
-/* ---------- Footer: dark premium theme, logo + text like header ---------- */
 .footer-premium {
   margin-top: 70px;
   position: relative;
@@ -1321,7 +1298,6 @@ body.lang-ur .footer-link-col a:hover { transform: translateX(-3px); }
   .footer-tagline { margin-left: auto; margin-right: auto; }
 }
 
-/* ---------- Extra responsiveness pass for all calculator/static pages ---------- */
 @media (max-width: 640px) {
   main { padding: 22px 16px 50px; }
   .calc-header h1 { font-size: clamp(23px, 6vw, 28px); }
@@ -1335,4 +1311,163 @@ body.lang-ur .footer-link-col a:hover { transform: translateX(-3px); }
 }
 @media (max-width: 380px) {
   .tool-grid-premium { grid-template-columns: 1fr 1fr; }
+}
+/* ============================================================
+   FULL RESPONSIVE OVERHAUL
+   Loads last, so it safely wins the cascade for every screen
+   size below. Goal: nothing overflows, nothing looks
+   oversized on small phones, everything scales smoothly.
+   ============================================================ */
+
+/* Universal safety net — stop ANY element from causing
+   horizontal scroll on small screens */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, svg { max-width: 100%; height: auto; }
+* { min-width: 0; }
+
+/* ---------- Tablet range (781px–1024px): tighten spacing,
+   don't let it look like a stretched desktop layout ---------- */
+@media (max-width: 1024px) {
+  main { padding: 26px 24px 56px; }
+  .tool-grid-premium { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .footer-premium-inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 22px; }
+}
+
+/* ---------- Standard mobile (max 640px) ---------- */
+@media (max-width: 640px) {
+  /* Hero text: fluid, never oversized */
+  .hero { padding: 32px 6px 40px; }
+  .hero h1 {
+    font-size: clamp(24px, 7.2vw, 32px);
+    min-height: 0;
+    line-height: 1.28;
+  }
+  .hero p { font-size: 14.5px; padding: 0 4px; }
+  .hero-kicker { font-size: 11px; padding: 5px 13px; }
+
+  .tools-section-head h2 { font-size: clamp(19px, 5.6vw, 24px); }
+  .tools-kicker { font-size: 10.5px; }
+
+  /* Result numbers: shrink + wrap instead of overflowing */
+  .result-box { padding: 18px 16px; }
+  .result-box .value {
+    font-size: clamp(20px, 7.5vw, 28px);
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .result-box .sub { font-size: 12px; }
+  .badge-pill {
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 7px 12px;
+  }
+  .nisab-note { font-size: 12.5px; }
+
+  /* Buttons: text never overflows a narrow button */
+  .btn { font-size: 14px; padding: 13px; }
+  .btn-dark { font-size: 13px; }
+  .status-line { font-size: 11.5px; align-items: flex-start; }
+  .status-line svg { margin-top: 1px; }
+
+  /* Rings/gauges: scale down so they don't crowd the card */
+  .ring, .age-ring { width: 108px; height: 108px; }
+  .ring-value { font-size: 20px; }
+  .age-ring-value { font-size: 26px; }
+  .age-ring-caption, .ring-caption { font-size: 9.5px; }
+  .zodiac-badge { font-size: 12px; padding: 5px 13px; }
+
+  /* Cards & fields */
+  .calc-header { margin-bottom: 22px; }
+  .calc-intro { font-size: 13.5px; }
+  .field label { font-size: 13px; }
+  .field input, .field select { font-size: 14.5px; padding: 10.5px 12px; }
+  .section-title { font-size: 11.5px; }
+
+  /* Static/article pages */
+  .static-page h1 { font-size: clamp(21px, 6.5vw, 25px); }
+  .static-page h2 { font-size: 16px; }
+  .static-page p, .static-page li { font-size: 14px; }
+  .article h2 { font-size: 16.5px; }
+  .article p { font-size: 14px; }
+
+  /* Footer: readable but compact */
+  .footer-premium-inner { padding: 40px 18px 24px; }
+  .footer-logo-text { font-size: 18px; }
+  .footer-tagline { font-size: 13px; }
+  .footer-col-title { font-size: 11px; }
+  .footer-link-col a { font-size: 13px; }
+  .footer-bottom-premium { font-size: 11.5px; padding: 14px 0 22px; }
+}
+
+/* ---------- Small phones (max 480px) ---------- */
+@media (max-width: 480px) {
+  main { padding: 18px 14px 44px; }
+  .hero h1 { font-size: clamp(21px, 7.8vw, 27px); }
+  .hero p { font-size: 13.5px; }
+  .trust-pill { font-size: 10.5px; padding: 5px 10px; }
+
+  .calc-box { padding: 16px; border-radius: 16px; }
+  .calc-header h1 { font-size: clamp(20px, 7vw, 24px); }
+  .rate-card { padding: 11px; }
+  .rate-card input { font-size: 14.5px; }
+  .rate-icon svg { width: 14px; height: 14px; }
+
+  .result-box .value { font-size: clamp(18px, 8.5vw, 24px); }
+  .result-box .label { font-size: 11.5px; }
+
+  .age-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .age-stat-card { padding: 12px 6px; }
+  .age-stat-icon { font-size: 17px; }
+  .age-stat-value { font-size: 15px; }
+  .age-stat-label { font-size: 9.5px; }
+
+  .dob-grid { gap: 8px; }
+
+  .article, .static-page { padding: 16px; border-radius: 14px; }
+
+  .footer-premium-inner { grid-template-columns: 1fr; }
+  .footer-logo-icon { height: 40px; width: 40px; }
+}
+
+/* ---------- Very small phones (max 360px) ---------- */
+@media (max-width: 360px) {
+  .header-inner { padding: 0 12px; }
+  .logo-text { font-size: 15.5px; }
+  .logo-icon { height: 36px; width: 36px; }
+
+  .hero h1 { font-size: clamp(19px, 8vw, 24px); }
+  .hero-kicker { font-size: 10px; padding: 4px 11px; }
+  .trust-row { gap: 6px; }
+  .trust-pill { font-size: 10px; padding: 4px 9px; }
+
+  .tool-grid-premium { grid-template-columns: 1fr; }
+  .tool-card-premium { padding: 16px; }
+  .tool-icon-badge { width: 44px; height: 44px; margin-bottom: 12px; }
+  .tool-icon-img { width: 26px; height: 26px; }
+
+  .calc-box { padding: 14px; }
+  .field input, .field select { padding: 10px; font-size: 14px; }
+  .btn { font-size: 13.5px; padding: 12px; }
+
+  .result-box .value { font-size: clamp(16px, 9vw, 21px); }
+  .ring, .age-ring { width: 94px; height: 94px; }
+  .ring-value { font-size: 17px; }
+  .age-ring-value { font-size: 21px; }
+
+  .footer-tagline { font-size: 12.5px; }
+}
+
+/* ---------- Landscape phones / short viewports: avoid huge
+   vertical hero padding eating the screen ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { padding: 20px 10px 26px; }
+  .hero-glow { display: none; }
+}
+
+/* ---------- Large screens (1400px+): cap growth so text/cards
+   don't stretch awkwardly wide ---------- */
+@media (min-width: 1400px) {
+  main, .header-inner, .footer-premium-inner { max-width: 1240px; }
 }
