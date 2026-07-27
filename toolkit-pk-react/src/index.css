@@ -1676,3 +1676,68 @@ body.lang-ur .soon-badge { margin-left: 0; margin-right: auto; }
 @media (max-width: 780px) {
   .mega-nav { display: none; }
 }
+/* ============================================================
+   HEADER MEGA-MENU DROPDOWN — animated, premium (v2 — bug fixes)
+   Paste this whole block at the END of your index.css,
+   AFTER the original mega-nav block (these rules override it).
+   Fixes: (1) icon/text top-alignment on wrapped 2-line items,
+   (2) dropdown closing prematurely while moving the mouse from
+   the trigger down into the panel (dead-zone gap removed).
+   ============================================================ */
+
+/* No visual gap between trigger and panel anymore — the gap is
+   now INSIDE the panel's own box (as padding), so the mouse
+   never leaves a ToolKitPK element while travelling down into it. */
+.mega-panel {
+  top: 100%;
+  padding-top: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* All the actual visible chrome (background, border, shadow,
+   rounded corners) now lives on the inner box instead */
+.mega-panel-inner {
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.22), 0 4px 12px -4px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Arrow nub now belongs to the inner box, positioned relative
+   to its own top edge */
+.mega-panel::before { content: none; }
+.mega-panel-inner::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  border-radius: 2px 0 0 0;
+  z-index: 0;
+}
+
+/* Icons stay top-aligned with the FIRST line of text, even when
+   a tool name wraps to two lines — keeps every icon on one
+   clean straight left edge */
+.mega-tool {
+  align-items: flex-start;
+}
+.mega-tool-icon {
+  margin-top: 1px;
+}
+
+/* Soon badge: align to the first line too, not centered
+   against a wrapped 2-line label */
+.soon-badge {
+  margin-top: 2px;
+}
