@@ -1490,7 +1490,7 @@ img, svg { max-width: 100%; height: auto; }
 .hero h1.ur-only {
   line-height: 2.15;
   padding: 8px 0;
-  min-height: clamp(150px, 34vw, 210px);
+  min-height: clamp(150px, 34vw, 150px);
 }
 
 @media (max-width: 640px) {
