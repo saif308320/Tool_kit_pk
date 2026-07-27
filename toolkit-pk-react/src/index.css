@@ -1471,3 +1471,59 @@ img, svg { max-width: 100%; height: auto; }
 @media (min-width: 1400px) {
   main, .header-inner, .footer-premium-inner { max-width: 1240px; }
 }
+
+
+
+
+/* ============================================================
+   HERO HEADING FIX — Urdu (Nastaliq) needs much taller
+   line-height than English, and needs reserved height so the
+   TypeText word-cycling animation never causes overlap or
+   page-height jump.
+   ============================================================ */
+
+.hero h1.en-only {
+  line-height: 1.2;
+  min-height: clamp(70px, 18vw, 96px);
+}
+
+.hero h1.ur-only {
+  line-height: 2.15;
+  padding: 8px 0;
+  min-height: clamp(150px, 34vw, 210px);
+}
+
+@media (max-width: 640px) {
+  .hero h1.en-only {
+    font-size: clamp(24px, 7.2vw, 32px);
+    line-height: 1.25;
+    min-height: clamp(64px, 20vw, 84px);
+  }
+  .hero h1.ur-only {
+    font-size: clamp(24px, 7.5vw, 32px);
+    line-height: 2.1;
+    min-height: clamp(130px, 42vw, 180px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1.en-only {
+    font-size: clamp(21px, 7.8vw, 27px);
+    min-height: clamp(58px, 22vw, 76px);
+  }
+  .hero h1.ur-only {
+    font-size: clamp(22px, 8.2vw, 28px);
+    min-height: clamp(120px, 46vw, 165px);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero h1.en-only {
+    font-size: clamp(19px, 8vw, 24px);
+    min-height: clamp(54px, 24vw, 70px);
+  }
+  .hero h1.ur-only {
+    font-size: clamp(20px, 8.6vw, 25px);
+    min-height: clamp(112px, 50vw, 150px);
+  }
+}
