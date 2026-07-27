@@ -1471,10 +1471,6 @@ img, svg { max-width: 100%; height: auto; }
 @media (min-width: 1400px) {
   main, .header-inner, .footer-premium-inner { max-width: 1240px; }
 }
-
-
-
-
 /* ============================================================
    HERO HEADING FIX — Urdu (Nastaliq) needs much taller
    line-height than English, and needs reserved height so the
@@ -1490,7 +1486,7 @@ img, svg { max-width: 100%; height: auto; }
 .hero h1.ur-only {
   line-height: 2.15;
   padding: 8px 0;
-  min-height: clamp(150px, 34vw, 150px);
+  min-height: clamp(150px, 34vw, 210px);
 }
 
 @media (max-width: 640px) {
@@ -1502,7 +1498,7 @@ img, svg { max-width: 100%; height: auto; }
   .hero h1.ur-only {
     font-size: clamp(24px, 7.5vw, 32px);
     line-height: 2.1;
-    min-height: clamp(130px, 42vw, 150px);
+    min-height: clamp(130px, 42vw, 180px);
   }
 }
 
@@ -1526,4 +1522,157 @@ img, svg { max-width: 100%; height: auto; }
     font-size: clamp(20px, 8.6vw, 25px);
     min-height: clamp(112px, 50vw, 150px);
   }
+}
+/* ============================================================
+   HEADER MEGA-MENU DROPDOWN — animated, premium
+   Paste this whole block at the END of your index.css
+   ============================================================ */
+
+.mega-nav { gap: 6px; }
+
+.mega-item {
+  position: relative;
+}
+
+.mega-trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.mega-trigger:hover,
+.mega-item.open .mega-trigger {
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+.mega-chev {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+.mega-item.open .mega-chev { transform: rotate(180deg); }
+
+/* Dropdown panel */
+.mega-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, -8px) scale(0.98);
+  min-width: 280px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.22), 0 4px 12px -4px rgba(15, 23, 42, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 250;
+  overflow: hidden;
+}
+.mega-item.open .mega-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Little arrow nub pointing up to the trigger */
+.mega-panel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  border-radius: 2px 0 0 0;
+}
+
+.mega-panel-inner {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  background: #fff;
+}
+
+.mega-tool {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  transition: background 0.15s ease, transform 0.15s ease, padding-left 0.15s ease;
+  position: relative;
+}
+.mega-tool:hover {
+  background: linear-gradient(135deg, var(--green-light), #f0fdfa);
+  transform: translateX(3px);
+}
+body.lang-ur .mega-tool:hover { transform: translateX(-3px); }
+
+.mega-tool-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.12));
+}
+
+.mega-tool-soon {
+  cursor: default;
+  opacity: 0.6;
+}
+.mega-tool-soon:hover {
+  background: none;
+  transform: none;
+}
+
+.soon-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  flex-shrink: 0;
+}
+body.lang-ur .soon-badge { margin-left: 0; margin-right: auto; }
+
+/* Stagger the tool rows fading in when panel opens */
+.mega-item.open .mega-tool {
+  animation: megaItemIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.mega-item.open .mega-tool:nth-child(1) { animation-delay: 0.03s; }
+.mega-item.open .mega-tool:nth-child(2) { animation-delay: 0.06s; }
+.mega-item.open .mega-tool:nth-child(3) { animation-delay: 0.09s; }
+.mega-item.open .mega-tool:nth-child(4) { animation-delay: 0.12s; }
+.mega-item.open .mega-tool:nth-child(5) { animation-delay: 0.15s; }
+
+@keyframes megaItemIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Keep the mega-menu desktop-only; mobile still uses the drawer */
+@media (max-width: 780px) {
+  .mega-nav { display: none; }
 }
