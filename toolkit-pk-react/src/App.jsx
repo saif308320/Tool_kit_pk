@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './context/LanguageContext.jsx'
 import Layout from './components/Layout.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 
 import Home from './pages/Home.jsx'
-import ScrollToTop from './components/ScrollToTop.jsx'
 import Zakat from './pages/Zakat.jsx'
 import Currency from './pages/Currency.jsx'
 import Loan from './pages/Loan.jsx'
@@ -18,12 +18,22 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
+import NamazTimings from './pages/NamazTimings.jsx'
+import IslamicDateConverter from './pages/IslamicDateConverter.jsx'
+import CompoundInterest from './pages/CompoundInterest.jsx'
+import ElectricityBill from './pages/ElectricityBill.jsx'
+import FuelCost from './pages/FuelCost.jsx'
+import WordCounter from './pages/WordCounter.jsx'
+import PasswordGenerator from './pages/PasswordGenerator.jsx'
+import CalorieCalculator from './pages/CalorieCalculator.jsx'
+import PregnancyDueDate from './pages/PregnancyDueDate.jsx'
+import DateCountdown from './pages/DateCountdown.jsx'
 
 export default function App() {
   return (
     <LanguageProvider>
+      <ScrollToTop />
       <Layout>
-        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/zakat-calculator" element={<Zakat />} />
@@ -40,6 +50,16 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/terms-of-service" element={<Terms />} />
+          <Route path="/namaz-timings" element={<NamazTimings />} />
+          <Route path="/islamic-date-converter" element={<IslamicDateConverter />} />
+          <Route path="/compound-interest-calculator" element={<CompoundInterest />} />
+          <Route path="/electricity-bill-calculator" element={<ElectricityBill />} />
+          <Route path="/fuel-cost-calculator" element={<FuelCost />} />
+          <Route path="/word-counter" element={<WordCounter />} />
+          <Route path="/password-generator" element={<PasswordGenerator />} />
+          <Route path="/calorie-calculator" element={<CalorieCalculator />} />
+          <Route path="/pregnancy-due-date-calculator" element={<PregnancyDueDate />} />
+          <Route path="/date-countdown-calculator" element={<DateCountdown />} />
         </Routes>
       </Layout>
     </LanguageProvider>

@@ -329,19 +329,47 @@ export default function Zakat() {
       <article className="article">
   <div className="en-only">
     <h2>What is Zakat?</h2>
-    <p>Zakat is one of the five pillars of Islam and is obligatory on every Muslim whose total wealth exceeds the Nisab threshold for one full lunar (Hijri) year. It is calculated as 2.5% of your total qualifying wealth — including gold, silver, cash, savings, and investments — and is meant to purify wealth while supporting those in need.</p>
+    <p>Zakat is one of the five pillars of Islam and is obligatory on every Muslim whose total wealth exceeds the Nisab threshold for one full lunar (Hijri) year. It is calculated as 2.5% of your total qualifying wealth — including gold, silver, cash, savings, and investments — and is meant to purify wealth while supporting those in need. Unlike voluntary charity (sadaqah), Zakat is a fixed religious duty with its own rules on who must pay, what counts as wealth, and how the amount is worked out.</p>
+
     <h2>What is Nisab?</h2>
-    <p>Nisab is the minimum amount of wealth a Muslim must own before Zakat becomes obligatory. It is commonly based on 52.5 tola (612.35 grams) of silver, or alternatively 7.5 tola (87.48 grams) of gold. Most scholars recommend using the silver Nisab, since it is lower in value and allows more people to fulfill this obligation.</p>
+    <p>Nisab is the minimum amount of wealth a Muslim must own before Zakat becomes obligatory. It is commonly based on 52.5 tola (612.35 grams) of silver, or alternatively 7.5 tola (87.48 grams) of gold. Most scholars recommend using the silver Nisab, since it is lower in value and allows more people to fulfill this obligation and support the wider community. Because gold and silver prices move daily, the Nisab value in rupees also changes — this calculator pulls today's rate automatically so you don't have to check it yourself.</p>
+
+    <h2>How is Zakat calculated?</h2>
+    <p>Once your total qualifying wealth is above the Nisab, Zakat is simply 2.5% (or 1/40th) of that total. Add up the current market value of your gold, silver, and cash — including bank balances, savings certificates, and money receivable — then subtract any short-term debts you owe. If what remains is at or above the Nisab, multiply it by 2.5% to get the amount due. This calculator does that math for you the moment you enter your figures above.</p>
+
     <h2>Who must pay Zakat?</h2>
-    <p>Zakat is due on any adult Muslim of sound mind whose total wealth — after subtracting debts — stays above the Nisab threshold for a full lunar year. This includes cash in hand, bank balances, gold, silver, and business or investment assets, but generally excludes your primary home, personal vehicle, and everyday household items.</p>
+    <p>Zakat is due on any adult Muslim of sound mind whose total wealth — after subtracting debts — stays above the Nisab threshold for a full lunar year. This includes cash in hand, bank balances, gold, silver, and business or investment assets, but generally excludes your primary home, personal vehicle, and everyday household items you use rather than trade in.</p>
+
+    <h2>When should Zakat be paid?</h2>
+    <p>Zakat becomes due once a full lunar year (Hawl) has passed since your wealth first reached the Nisab threshold, and it stays payable every year after that as long as your wealth remains above it. Many people choose to pay during Ramadan for its added reward, but Zakat can be calculated and paid on any date once your Hawl is complete — you don't have to wait for a specific month.</p>
+
+    <h2>Frequently asked questions</h2>
+    <p><strong>Do I pay Zakat on jewellery I wear?</strong> Most scholars hold that gold and silver jewellery are subject to Zakat regardless of whether they are worn regularly, since Zakat applies to the metal itself.</p>
+    <p><strong>Is Zakat due on my salary?</strong> Zakat isn't charged directly on income. It's charged on wealth you still hold at your Zakat anniversary — so savings from your salary count, but the salary itself doesn't until it becomes savings.</p>
+    <p><strong>Can I pay Zakat in instalments?</strong> Yes, many scholars allow paying your Zakat amount across the year in parts, as long as the full amount is settled.</p>
+    <p className="calc-intro" style={{ marginTop: '14px', fontSize: '12.5px' }}>This calculator is provided for general guidance only and is not a substitute for advice from a qualified religious scholar for your specific situation.</p>
   </div>
   <div className="ur-only ur-text">
     <h2>زکوٰۃ کیا ہے؟</h2>
-    <p>زکوٰۃ اسلام کے پانچ ارکان میں سے ایک ہے اور ہر اس مسلمان پر فرض ہے جس کی کل دولت ایک مکمل قمری سال تک نصاب کی حد سے زیادہ رہے۔ یہ کل مالیت کا 2.5 فیصد ہوتی ہے، جس میں سونا، چاندی، نقدی اور سرمایہ کاری شامل ہیں۔</p>
+    <p>زکوٰۃ اسلام کے پانچ ارکان میں سے ایک ہے اور ہر اس مسلمان پر فرض ہے جس کی کل دولت ایک مکمل قمری سال تک نصاب کی حد سے زیادہ رہے۔ یہ کل مالیت کا 2.5 فیصد ہوتی ہے، جس میں سونا، چاندی، نقدی اور سرمایہ کاری شامل ہیں۔ یہ نفلی صدقے سے مختلف ایک مقررہ دینی فریضہ ہے۔</p>
+
     <h2>نصاب کیا ہے؟</h2>
-    <p>نصاب وہ کم از کم مقدار ہے جو ایک مسلمان کے پاس ہونی چاہیے تاکہ اس پر زکوٰۃ فرض ہو۔ عام طور پر یہ 52.5 تولہ چاندی یا 7.5 تولہ سونے کی مالیت پر مبنی ہوتا ہے۔</p>
+    <p>نصاب وہ کم از کم مقدار ہے جو ایک مسلمان کے پاس ہونی چاہیے تاکہ اس پر زکوٰۃ فرض ہو۔ عام طور پر یہ 52.5 تولہ چاندی یا 7.5 تولہ سونے کی مالیت پر مبنی ہوتا ہے۔ اکثر علماء چاندی کے نصاب کو ترجیح دیتے ہیں کیونکہ اس کی مالیت کم ہوتی ہے اور زیادہ لوگ اس فریضے کو ادا کر سکتے ہیں۔</p>
+
+    <h2>زکوٰۃ کا حساب کیسے لگایا جاتا ہے؟</h2>
+    <p>جب آپ کی کل دولت نصاب سے زیادہ ہو جائے تو زکوٰۃ اس کا صرف 2.5 فیصد ہوتی ہے۔ اپنے سونے، چاندی اور نقدی کی موجودہ مالیت جمع کریں، قرض منہا کریں، اور باقی رقم کا 2.5 فیصد نکال لیں۔</p>
+
     <h2>زکوٰۃ کس پر فرض ہے؟</h2>
-    <p>زکوٰۃ ہر بالغ اور عاقل مسلمان پر فرض ہے جس کی کل دولت، قرض منہا کرنے کے بعد، ایک مکمل سال تک نصاب سے زیادہ رہے۔</p>
+    <p>زکوٰۃ ہر بالغ اور عاقل مسلمان پر فرض ہے جس کی کل دولت، قرض منہا کرنے کے بعد، ایک مکمل سال تک نصاب سے زیادہ رہے۔ اس میں نقدی، بینک بیلنس، سونا، چاندی اور کاروباری اثاثے شامل ہیں، جبکہ رہائشی گھر اور ذاتی استعمال کی چیزیں عام طور پر شامل نہیں۔</p>
+
+    <h2>زکوٰۃ کب ادا کرنی چاہیے؟</h2>
+    <p>زکوٰۃ اس وقت فرض ہوتی ہے جب آپ کی دولت نصاب تک پہنچنے کے بعد ایک مکمل قمری سال مکمل ہو جائے۔ بہت سے لوگ رمضان میں ادائیگی کو ترجیح دیتے ہیں، لیکن آپ اپنے سال کی تکمیل پر کسی بھی وقت زکوٰۃ ادا کر سکتے ہیں۔</p>
+
+    <h2>اکثر پوچھے جانے والے سوالات</h2>
+    <p><strong>کیا پہنے ہوئے زیورات پر زکوٰۃ ہے؟</strong> اکثر علماء کے نزدیک سونے چاندی کے زیورات پر زکوٰۃ فرض ہے، چاہے وہ روزانہ پہنے جائیں۔</p>
+    <p><strong>کیا تنخواہ پر زکوٰۃ ہے؟</strong> زکوٰۃ براہ راست آمدنی پر نہیں بلکہ اس بچت پر ہے جو آپ کے پاس زکوٰۃ کی تاریخ پر موجود ہو۔</p>
+    <p><strong>کیا زکوٰۃ قسطوں میں ادا کی جا سکتی ہے؟</strong> جی ہاں، بہت سے علماء کے نزدیک سال بھر میں قسطوں میں ادائیگی جائز ہے، بشرطیکہ پوری رقم ادا ہو جائے۔</p>
+    <p className="calc-intro" style={{ marginTop: '14px', fontSize: '12.5px' }}>یہ کیلکولیٹر عمومی رہنمائی کے لیے ہے اور کسی مستند عالم دین کے مشورے کا متبادل نہیں۔</p>
   </div>
 </article>
     </div>

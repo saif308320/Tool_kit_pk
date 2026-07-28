@@ -32,8 +32,8 @@ const NAV_CATEGORIES = [
     en: 'Islamic', ur: 'اسلامی',
     tools: [
       { href: '/zakat-calculator', en: 'Zakat Calculator', ur: 'زکوٰۃ کیلکولیٹر', icon: ICONS.zakat, ready: true },
-      { href: '/namaz-timings', en: 'Namaz Timings', ur: 'نماز کے اوقات', icon: ICONS.namaz, ready: false },
-      { href: '/islamic-date-converter', en: 'Islamic Date Converter', ur: 'اسلامی تاریخ کنورٹر', icon: ICONS.islamicDate, ready: false },
+      { href: '/namaz-timings', en: 'Namaz Timings', ur: 'نماز کے اوقات', icon: ICONS.namaz, ready: true },
+      { href: '/islamic-date-converter', en: 'Islamic Date Converter', ur: 'اسلامی تاریخ کنورٹر', icon: ICONS.islamicDate, ready: true },
     ],
   },
   {
@@ -41,7 +41,7 @@ const NAV_CATEGORIES = [
     en: 'Finance', ur: 'فنانس',
     tools: [
       { href: '/currency-converter', en: 'Currency Converter', ur: 'کرنسی کنورٹر', icon: ICONS.currency, ready: true },
-      { href: '/compound-interest-calculator', en: 'Compound Interest', ur: 'کمپاؤنڈ انٹرسٹ', icon: ICONS.interest, ready: false },
+      { href: '/compound-interest-calculator', en: 'Compound Interest', ur: 'کمپاؤنڈ انٹرسٹ', icon: ICONS.interest, ready: true },
       { href: '/salary-tax-calculator', en: 'Salary Tax Calculator', ur: 'تنخواہ ٹیکس کیلکولیٹر', icon: ICONS.tax, ready: true },
       { href: '/discount-calculator', en: 'Discount Calculator', ur: 'ڈسکاؤنٹ کیلکولیٹر', icon: ICONS.discount, ready: true },
     ],
@@ -51,8 +51,8 @@ const NAV_CATEGORIES = [
     en: 'Loans & Bills', ur: 'قرض اور بلز',
     tools: [
       { href: '/loan-calculator', en: 'Loan / EMI Calculator', ur: 'قرض / قسط کیلکولیٹر', icon: ICONS.loan, ready: true },
-      { href: '/electricity-bill-calculator', en: 'Electricity Bill Estimator', ur: 'بجلی بل تخمینہ', icon: ICONS.electricity, ready: false },
-      { href: '/fuel-cost-calculator', en: 'Petrol / Fuel Cost', ur: 'پیٹرول لاگت کیلکولیٹر', icon: ICONS.fuel, ready: false },
+      { href: '/electricity-bill-calculator', en: 'Electricity Bill Estimator', ur: 'بجلی بل تخمینہ', icon: ICONS.electricity, ready: true },
+      { href: '/fuel-cost-calculator', en: 'Petrol / Fuel Cost', ur: 'پیٹرول لاگت کیلکولیٹر', icon: ICONS.fuel, ready: true },
     ],
   },
   {
@@ -62,8 +62,8 @@ const NAV_CATEGORIES = [
       { href: '/unit-converter', en: 'Unit Converter', ur: 'یونٹ کنورٹر', icon: ICONS.unit, ready: true },
       { href: '/percentage-calculator', en: 'Percentage Calculator', ur: 'فیصد کیلکولیٹر', icon: ICONS.percentage, ready: true },
       { href: '/gpa-calculator', en: 'GPA Calculator', ur: 'جی پی اے کیلکولیٹر', icon: ICONS.gpa, ready: true },
-      { href: '/word-counter', en: 'Word & Character Counter', ur: 'ورڈ کاؤنٹر', icon: ICONS.wordCounter, ready: false },
-      { href: '/password-generator', en: 'Password Generator', ur: 'پاسورڈ جنریٹر', icon: ICONS.password, ready: false },
+      { href: '/word-counter', en: 'Word & Character Counter', ur: 'ورڈ کاؤنٹر', icon: ICONS.wordCounter, ready: true },
+      { href: '/password-generator', en: 'Password Generator', ur: 'پاسورڈ جنریٹر', icon: ICONS.password, ready: true },
     ],
   },
   {
@@ -71,27 +71,67 @@ const NAV_CATEGORIES = [
     en: 'Health & Life', ur: 'صحت اور زندگی',
     tools: [
       { href: '/bmi-calculator', en: 'BMI Calculator', ur: 'بی ایم آئی کیلکولیٹر', icon: ICONS.bmi, ready: true },
-      { href: '/calorie-calculator', en: 'Calorie / BMR Calculator', ur: 'کیلوری کیلکولیٹر', icon: ICONS.calorie, ready: false },
+      { href: '/calorie-calculator', en: 'Calorie / BMR Calculator', ur: 'کیلوری کیلکولیٹر', icon: ICONS.calorie, ready: true },
       { href: '/age-calculator', en: 'Age Calculator', ur: 'عمر کیلکولیٹر', icon: ICONS.age, ready: true },
-      { href: '/pregnancy-due-date-calculator', en: 'Pregnancy Due Date', ur: 'حمل کی تاریخ', icon: ICONS.pregnancy, ready: false },
-      { href: '/date-countdown-calculator', en: 'Date Countdown', ur: 'تاریخ کاؤنٹ ڈاؤن', icon: ICONS.countdown, ready: false },
+      { href: '/pregnancy-due-date-calculator', en: 'Pregnancy Due Date', ur: 'حمل کی تاریخ', icon: ICONS.pregnancy, ready: true },
+      { href: '/date-countdown-calculator', en: 'Date Countdown', ur: 'تاریخ کاؤنٹ ڈاؤن', icon: ICONS.countdown, ready: true },
     ],
   },
 ]
 
+// Flat, searchable list of all 20 tools (built from the categories above,
+// so search always stays in sync with the nav — no duplicate data to maintain)
+const ALL_TOOLS = NAV_CATEGORIES.flatMap((cat) =>
+  cat.tools.map((t) => ({ ...t, catEn: cat.en, catUr: cat.ur }))
+)
+
 export default function Header({ onMenuClick, menuOpen }) {
   const { lang, setLang } = useLanguage()
   const [openKey, setOpenKey] = useState(null)
+  const [scrolled, setScrolled] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [query, setQuery] = useState('')
   const navRef = useRef(null)
+  const searchRef = useRef(null)
+  const searchInputRef = useRef(null)
+
+  const results = query.trim()
+    ? ALL_TOOLS.filter((t) => {
+        const q = query.trim().toLowerCase()
+        return (
+          t.en.toLowerCase().includes(q) ||
+          t.ur.includes(query.trim()) ||
+          t.catEn.toLowerCase().includes(q) ||
+          t.catUr.includes(query.trim())
+        )
+      })
+    : ALL_TOOLS
+
+  function closeSearch() {
+    setSearchOpen(false)
+    setQuery('')
+  }
 
   useEffect(() => {
     function handleClickOutside(e) {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setOpenKey(null)
       }
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false)
+      }
     }
     function handleKeyDown(e) {
-      if (e.key === 'Escape') setOpenKey(null)
+      if (e.key === 'Escape') {
+        setOpenKey(null)
+        closeSearch()
+      }
+      // Press "/" anywhere (outside an input) to jump straight into search
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault()
+        setSearchOpen(true)
+        setTimeout(() => searchInputRef.current?.focus(), 0)
+      }
     }
     document.addEventListener('mousedown', handleClickOutside)
     document.addEventListener('keydown', handleKeyDown)
@@ -101,8 +141,24 @@ export default function Header({ onMenuClick, menuOpen }) {
     }
   }, [])
 
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus()
+  }, [searchOpen])
+
+  // Premium "on scroll" behaviour: header shrinks slightly and gains a
+  // soft shadow + more opaque glass once the page is scrolled, so being
+  // sticky is visually obvious instead of just technically true.
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 10)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <header>
+    <header className={scrolled ? 'header-scrolled' : ''}>
       <div className="header-inner">
         <Link to="/" className="logo">
           <img src="/image/Toolkit_pk.png" alt="ToolKitPK" className="logo-icon" />
@@ -156,6 +212,67 @@ export default function Header({ onMenuClick, menuOpen }) {
         </nav>
 
         <div className="header-actions">
+          <div className="search-wrap" ref={searchRef}>
+            <button
+              type="button"
+              className={'search-trigger' + (searchOpen ? ' active' : '')}
+              onClick={() => setSearchOpen((o) => !o)}
+              aria-label="Search tools"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                <path d="M21 21l-4.3-4.3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            {searchOpen && (
+              <div className="search-panel">
+                <div className="search-input-row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="search-input-icon">
+                    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                    <path d="M21 21l-4.3-4.3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={lang === 'ur' ? 'ٹولز تلاش کریں...' : 'Search tools... e.g. Zakat, Loan'}
+                    className={lang === 'ur' ? 'ur-text' : ''}
+                  />
+                  {query && (
+                    <button type="button" className="search-clear" onClick={() => setQuery('')} aria-label="Clear">✕</button>
+                  )}
+                </div>
+
+                <div className="search-results">
+                  {results.length === 0 ? (
+                    <div className="search-empty">
+                      <span className="en-only">No tools found for "{query}"</span>
+                      <span className="ur-only ur-text">"{query}" کے لیے کوئی ٹول نہیں ملا</span>
+                    </div>
+                  ) : (
+                    results.map((t) => (
+                      <Link key={t.href} to={t.href} className="search-result-item" onClick={closeSearch}>
+                        <img src={t.icon} alt="" className="search-result-icon" loading="lazy" />
+                        <div className="search-result-text">
+                          <div className="search-result-name">
+                            <span className="en-only">{t.en}</span>
+                            <span className="ur-only ur-text">{t.ur}</span>
+                          </div>
+                          <div className="search-result-cat">
+                            <span className="en-only">{t.catEn}</span>
+                            <span className="ur-only ur-text">{t.catUr}</span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="lang-toggle lang-toggle-desktop">
             <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>English</button>
             <button className={lang === 'ur' ? 'active' : ''} onClick={() => setLang('ur')}>اردو</button>
