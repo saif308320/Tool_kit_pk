@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import DatePicker from '../components/DatePicker.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How accurate is this Islamic date conversion?',
+    aEn: 'This tool uses astronomical calculations, but the official Islamic date in Pakistan depends on moon-sighting announcements by the Ruet-e-Hilal Committee, which can differ by a day.',
+    qUr: 'یہ اسلامی تاریخ کنورژن کتنی درست ہے؟',
+    aUr: 'یہ ٹول فلکیاتی حساب استعمال کرتا ہے، تاہم پاکستان میں سرکاری تاریخ رویت ہلال کمیٹی کے چاند دیکھنے کے اعلان پر منحصر ہوتی ہے، جس سے ایک دن کا فرق ہو سکتا ہے۔',
+  },
+  {
+    qEn: 'Why does the Islamic calendar have 354 or 355 days?',
+    aEn: 'The Hijri calendar is lunar, based on moon cycles of about 29.5 days each, making it roughly 10-11 days shorter than the solar Gregorian year.',
+    qUr: 'اسلامی کیلنڈر میں 354 یا 355 دن کیوں ہوتے ہیں؟',
+    aUr: 'ہجری کیلنڈر قمری ہے، جو تقریباً 29.5 دن کے چاند کے چکروں پر مبنی ہے، اس لیے یہ عیسوی سال سے تقریباً 10-11 دن چھوٹا ہوتا ہے۔',
+  },
+  {
+    qEn: 'Can I convert both from Gregorian to Hijri and back?',
+    aEn: 'Yes, this converter works both ways — enter a Gregorian date to get the Hijri equivalent, or an Islamic date to see the Gregorian date.',
+    qUr: 'کیا میں عیسوی سے ہجری اور واپس دونوں طرف تبدیل کر سکتا ہوں؟',
+    aUr: 'جی ہاں، یہ کنورٹر دونوں طرف کام کرتا ہے — عیسوی تاریخ درج کریں تاکہ ہجری تاریخ ملے، یا اسلامی تاریخ درج کریں تاکہ عیسوی تاریخ معلوم ہو۔',
+  },
+  {
+    qEn: 'Why is this useful for Pakistan?',
+    aEn: 'It helps track Islamic occasions like Ramadan, Eid, and Muharram, which follow the Hijri calendar and shift earlier by about 10-11 days each Gregorian year.',
+    qUr: 'یہ پاکستان کے لیے کیوں مفید ہے؟',
+    aUr: 'یہ رمضان، عید اور محرم جیسے اسلامی مواقع کو ٹریک کرنے میں مدد دیتا ہے، جو ہجری کیلنڈر کی پیروی کرتے ہیں اور ہر عیسوی سال تقریباً 10-11 دن پہلے آتے ہیں۔',
+  },
+]
 
 const HIJRI_MONTHS = [
   { en: 'Muharram', ur: 'محرم' }, { en: 'Safar', ur: 'صفر' }, { en: 'Rabi al-Awwal', ur: 'ربیع الاول' },
@@ -60,6 +92,8 @@ export default function IslamicDateConverter() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.islamicDate} />
+      <Breadcrumb toolEn="Islamic Date Converter" toolUr="اسلامی تاریخ کنورٹر" path="/islamic-date-converter" />
       <div className="calc-header">
         <h1 className="en-only">Islamic Date Converter</h1>
         <h1 className="ur-only ur-text">اسلامی تاریخ کنورٹر</h1>
@@ -169,6 +203,9 @@ export default function IslamicDateConverter() {
           <p>یہ ٹول فلکیاتی حساب استعمال کرتا ہے، تاہم پاکستان میں سرکاری تاریخ رویت ہلال کمیٹی کے چاند دیکھنے کے اعلان پر منحصر ہوتی ہے، جس سے ایک دن کا فرق ہو سکتا ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/islamic-date-converter" />
     </div>
   )
 }

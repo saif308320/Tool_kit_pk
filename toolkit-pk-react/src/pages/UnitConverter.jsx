@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'What unit types can I convert?',
+    aEn: 'This tool converts length, weight, volume, and temperature between metric and imperial systems, including common Pakistani units like tola.',
+    qUr: 'میں کون سے یونٹ تبدیل کر سکتا ہوں؟',
+    aUr: 'یہ ٹول لمبائی، وزن، حجم اور درجہ حرارت کو میٹرک اور امپیریل سسٹمز کے درمیان تبدیل کرتا ہے، بشمول تولہ جیسے عام پاکستانی یونٹس۔',
+  },
+  {
+    qEn: 'Why are both metric and imperial units used in Pakistan?',
+    aEn: 'Pakistan officially uses the metric system, but traditional units like tola and imperial units like feet are still common in daily life and certain industries.',
+    qUr: 'پاکستان میں میٹرک اور امپیریل دونوں یونٹس کیوں استعمال ہوتے ہیں؟',
+    aUr: 'پاکستان سرکاری طور پر میٹرک سسٹم استعمال کرتا ہے، لیکن تولہ جیسے روایتی یونٹس اور فٹ جیسے امپیریل یونٹس روزمرہ زندگی اور بعض صنعتوں میں اب بھی عام ہیں۔',
+  },
+  {
+    qEn: 'How accurate are the conversions?',
+    aEn: 'Conversions use precise standard conversion factors, so results are mathematically accurate for any value you enter.',
+    qUr: 'یہ تبدیلیاں کتنی درست ہیں؟',
+    aUr: 'تبدیلیاں درست معیاری تبدیلی فیکٹرز استعمال کرتی ہیں، اس لیے آپ کی درج کردہ ہر قدر کے لیے نتیجہ ریاضیاتی طور پر درست ہوتا ہے۔',
+  },
+  {
+    qEn: 'Can I convert between any two units instantly?',
+    aEn: "Yes, simply select the unit category, choose your 'from' and 'to' units, and the result updates instantly as you type.",
+    qUr: 'کیا میں کسی بھی دو یونٹس کے درمیان فوری تبدیلی کر سکتا ہوں؟',
+    aUr: "جی ہاں، بس یونٹ کیٹیگری منتخب کریں، 'سے' اور 'میں' یونٹس چنیں، اور ٹائپ کرتے ہی نتیجہ فوری اپڈیٹ ہو جائے گا۔",
+  },
+]
 
 const CATEGORY_OPTIONS = [
   { value: 'length', label: 'Length', icon: '📏' },
@@ -52,6 +84,8 @@ export default function UnitConverter() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.unitConverter} />
+      <Breadcrumb toolEn="Unit Converter" toolUr="یونٹ کنورٹر" path="/unit-converter" />
       <div className="calc-header">
         <h1 className="en-only">Unit Converter</h1>
         <h1 className="ur-only ur-text">یونٹ کنورٹر</h1>
@@ -114,6 +148,9 @@ export default function UnitConverter() {
     <p>پاکستان میں میٹرک اور روایتی یونٹس (جیسے تولہ) دونوں استعمال ہوتے ہیں، جبکہ بین الاقوامی مصنوعات میں امپیریل یونٹس عام ہیں۔ یہ ٹول فوری اور درست تبدیلی فراہم کرتا ہے۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/unit-converter" />
     </div>
   )
 }

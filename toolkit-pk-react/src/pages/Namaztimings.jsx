@@ -1,5 +1,37 @@
 import { useEffect, useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How accurate are these prayer timings?',
+    aEn: "Timings are calculated using standard astronomical formulas based on your city's location, and closely match official timings used across Pakistan.",
+    qUr: 'یہ نماز کے اوقات کتنے درست ہیں؟',
+    aUr: 'اوقات آپ کے شہر کے محل وقوع کی بنیاد پر معیاری فلکیاتی فارمولوں سے نکالے جاتے ہیں اور پاکستان میں استعمال ہونے والے سرکاری اوقات سے قریب تر ہوتے ہیں۔',
+  },
+  {
+    qEn: 'Why do prayer times change with location?',
+    aEn: 'Sunrise and sunset times shift based on geographic location, so each city has slightly different Fajr, Zuhr, Asr, Maghrib, and Isha timings.',
+    qUr: 'نماز کے اوقات مقام کے ساتھ کیوں تبدیل ہوتے ہیں؟',
+    aUr: 'طلوع اور غروب آفتاب کے اوقات جغرافیائی محل وقوع کے مطابق تبدیل ہوتے ہیں، اسی لیے ہر شہر کے اوقات میں تھوڑا فرق ہوتا ہے۔',
+  },
+  {
+    qEn: 'Why do prayer times change throughout the year?',
+    aEn: "As the sun's position changes with the seasons, day length varies, causing Fajr, Maghrib, and Isha timings to shift earlier or later throughout the year.",
+    qUr: 'سال بھر میں نماز کے اوقات کیوں بدلتے رہتے ہیں؟',
+    aUr: 'موسموں کے ساتھ سورج کی پوزیشن بدلنے سے دن کی لمبائی تبدیل ہوتی ہے، جس سے سال بھر فجر، مغرب اور عشاء کے اوقات آگے پیچھے ہوتے رہتے ہیں۔',
+  },
+  {
+    qEn: 'Can I get timings for any city in Pakistan?',
+    aEn: 'Yes, simply select or search for your city and the tool will calculate timings specific to that location.',
+    qUr: 'کیا میں پاکستان کے کسی بھی شہر کے اوقات حاصل کر سکتا ہوں؟',
+    aUr: 'جی ہاں، بس اپنا شہر منتخب یا تلاش کریں اور یہ ٹول اس مقام کے مخصوص اوقات نکال دے گا۔',
+  },
+]
 
 /* Reliable lat/long per city — using coordinates instead of the city-name
    lookup avoids Aladhan's geocoding failing/mismatching for smaller PK cities,
@@ -104,6 +136,8 @@ export default function NamazTimings() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.namaz} />
+      <Breadcrumb toolEn="Namaz Timings" toolUr="نماز کے اوقات" path="/namaz-timings" />
       <div className="calc-header">
         <h1 className="en-only">Namaz Timings (Prayer Times)</h1>
         <h1 className="ur-only ur-text">نماز کے اوقات</h1>
@@ -188,6 +222,9 @@ export default function NamazTimings() {
           <p>طلوع اور غروب آفتاب کے اوقات جغرافیائی محل وقوع کے مطابق تبدیل ہوتے ہیں، اسی لیے ہر شہر کے اوقات میں تھوڑا فرق ہوتا ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/namaz-timings" />
     </div>
   )
 }

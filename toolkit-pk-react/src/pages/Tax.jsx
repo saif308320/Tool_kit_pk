@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is salary tax calculated in Pakistan?',
+    aEn: 'Pakistan uses a slab-based system where your annual taxable income is taxed at increasing rates as it crosses each threshold, similar to most countries.',
+    qUr: 'پاکستان میں تنخواہ ٹیکس کیسے نکالا جاتا ہے؟',
+    aUr: 'پاکستان میں سلیب کی بنیاد پر نظام ہے جہاں آپ کی سالانہ قابل ٹیکس آمدنی مختلف حدوں کو عبور کرنے پر بڑھتی ہوئی شرح سے ٹیکس ادا کرتی ہے۔',
+  },
+  {
+    qEn: 'What are the current tax slabs?',
+    aEn: 'As a general guide: income up to Rs. 600,000 annually is tax-free at 0%, Rs. 600,001–1,200,000 is taxed at 1%, and Rs. 1,200,001–2,200,000 at Rs. 6,000 plus 11% of the amount above 1,200,000.',
+    qUr: 'موجودہ ٹیکس سلیبز کیا ہیں؟',
+    aUr: 'عمومی رہنمائی کے طور پر: 600,000 روپے تک سالانہ آمدنی 0% ٹیکس فری ہے، 600,001–1,200,000 پر 1%، اور 1,200,001–2,200,000 پر 6,000 + 11% ٹیکس لگتا ہے۔',
+  },
+  {
+    qEn: 'Do tax slabs change every year?',
+    aEn: "Yes, tax slabs are typically revised in each year's Federal Budget, so always verify current rates with FBR before making financial decisions.",
+    qUr: 'کیا ٹیکس سلیبز ہر سال بدلتے ہیں؟',
+    aUr: 'جی ہاں، ٹیکس سلیبز عام طور پر ہر سال کے وفاقی بجٹ میں نظرثانی ہوتے ہیں، اس لیے مالی فیصلوں سے پہلے ایف بی آر سے موجودہ شرحیں ضرور چیک کریں۔',
+  },
+  {
+    qEn: 'Is this calculator a substitute for professional tax advice?',
+    aEn: 'No, this gives a quick estimate only — for exact tax filing and deductions specific to your situation, consult a qualified tax accountant or FBR directly.',
+    qUr: 'کیا یہ کیلکولیٹر پیشہ ور ٹیکس مشورے کا متبادل ہے؟',
+    aUr: 'نہیں، یہ صرف فوری تخمینہ دیتا ہے — درست ٹیکس فائلنگ اور آپ کی صورتحال کے مطابق کٹوتیوں کے لیے کسی مستند ٹیکس اکاؤنٹنٹ یا ایف بی آر سے رجوع کریں۔',
+  },
+]
 
 const TYPE_OPTIONS = [
   { value: 'monthly', label: 'Monthly', icon: '📅' },
@@ -37,6 +69,8 @@ export default function Tax() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.tax} />
+      <Breadcrumb toolEn="Salary Tax Calculator" toolUr="تنخواہ ٹیکس کیلکولیٹر" path="/salary-tax-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Salary Tax Calculator</h1>
         <h1 className="ur-only ur-text">تنخواہ ٹیکس کیلکولیٹر</h1>
@@ -58,8 +92,8 @@ export default function Tax() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate Tax</span>
-          <span className="ur-only ur-text">ٹیکس کا حساب لگائیں</span>
+          <span className="en-only">✨ Calculate Tax</span>
+          <span className="ur-only ur-text">✨ ٹیکس کا حساب لگائیں</span>
         </button>
 
         {result && (
@@ -115,6 +149,9 @@ export default function Tax() {
     <p>600,000 روپے تک — 0%<br/>600,001 – 1,200,000 — 1%<br/>1,200,001 – 2,200,000 — 6,000 + 11%</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/salary-tax-calculator" />
     </div>
   )
 }

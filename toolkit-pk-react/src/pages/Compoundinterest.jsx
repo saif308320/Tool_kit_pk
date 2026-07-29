@@ -1,4 +1,36 @@
 import { useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'What is the difference between simple and compound interest?',
+    aEn: 'Simple interest is calculated only on the principal amount, while compound interest is calculated on the principal plus any interest already earned, so it grows faster over time.',
+    qUr: 'سادہ اور کمپاؤنڈ سود میں کیا فرق ہے؟',
+    aUr: 'سادہ سود صرف اصل رقم پر لگتا ہے جبکہ کمپاؤنڈ سود اصل رقم اور جمع شدہ سود دونوں پر لگتا ہے، جس سے رقم تیزی سے بڑھتی ہے۔',
+  },
+  {
+    qEn: 'How often should interest be compounded for the best growth?',
+    aEn: 'More frequent compounding (monthly or daily) results in slightly higher returns than annual compounding, since interest gets added to the principal more often.',
+    qUr: 'بہترین اضافے کے لیے سود کتنی بار کمپاؤنڈ ہونا چاہیے؟',
+    aUr: 'زیادہ بار کمپاؤنڈنگ (ماہانہ یا روزانہ) سالانہ کمپاؤنڈنگ کی نسبت تھوڑا زیادہ منافع دیتی ہے کیونکہ سود جلدی جلدی اصل رقم میں شامل ہوتا ہے۔',
+  },
+  {
+    qEn: 'What is the rule of 72?',
+    aEn: 'Dividing 72 by your annual interest rate gives a rough estimate of how many years it will take for your investment to double in value.',
+    qUr: '72 کا اصول کیا ہے؟',
+    aUr: '72 کو اپنی سالانہ شرح سود سے تقسیم کرنے سے ایک اندازہ ملتا ہے کہ آپ کی سرمایہ کاری کتنے سالوں میں دگنی ہو جائے گی۔',
+  },
+  {
+    qEn: 'Can I use this for both savings and loan calculations?',
+    aEn: 'This calculator is designed for showing how savings or investments grow over time; for loan repayment schedules, use the dedicated Loan/EMI calculator instead.',
+    qUr: 'کیا میں یہ بچت اور قرض دونوں کے لیے استعمال کر سکتا ہوں؟',
+    aUr: 'یہ کیلکولیٹر بچت اور سرمایہ کاری کے بڑھنے کو دکھانے کے لیے ہے؛ قرض کی اقساط کے لیے ہمارا مخصوص Loan/EMI کیلکولیٹر استعمال کریں۔',
+  },
+]
 
 export default function CompoundInterest() {
   const [principal, setPrincipal] = useState('')
@@ -35,6 +67,8 @@ export default function CompoundInterest() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.compoundInterest} />
+      <Breadcrumb toolEn="Compound Interest Calculator" toolUr="کمپاؤنڈ انٹرسٹ" path="/compound-interest-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Compound Interest Calculator</h1>
         <h1 className="ur-only ur-text">کمپاؤنڈ انٹرسٹ کیلکولیٹر</h1>
@@ -68,8 +102,8 @@ export default function CompoundInterest() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate</span>
-          <span className="ur-only ur-text">حساب لگائیں</span>
+          <span className="en-only">✨ Calculate</span>
+          <span className="ur-only ur-text">✨ حساب لگائیں</span>
         </button>
 
         {result && (
@@ -146,6 +180,9 @@ export default function CompoundInterest() {
           <p>سادہ سود صرف اصل رقم پر لگتا ہے جبکہ کمپاؤنڈ سود اصل رقم اور جمع شدہ سود دونوں پر لگتا ہے، جس سے رقم تیزی سے بڑھتی ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/compound-interest-calculator" />
     </div>
   )
 }

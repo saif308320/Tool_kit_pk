@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'What is a healthy BMI range?',
+    aEn: 'For most adults, a BMI between 18.5 and 24.9 is considered normal. Below 18.5 is underweight, 25–29.9 is overweight, and 30+ is classified as obese.',
+    qUr: 'صحت مند بی ایم آئی رینج کیا ہے؟',
+    aUr: 'زیادہ تر بالغوں کے لیے 18.5 سے 24.9 کے درمیان بی ایم آئی نارمل سمجھا جاتا ہے۔ 18.5 سے کم کم وزن، 25–29.9 زیادہ وزن، اور 30 سے اوپر موٹاپا شمار ہوتا ہے۔',
+  },
+  {
+    qEn: 'Is BMI accurate for everyone?',
+    aEn: "BMI is a useful general screening tool but doesn't distinguish between muscle and fat, so it may overestimate body fat in athletes and underestimate it in older adults.",
+    qUr: 'کیا بی ایم آئی سب کے لیے درست ہے؟',
+    aUr: 'بی ایم آئی ایک عمومی رہنما اشارہ ہے لیکن یہ پٹھوں اور چربی میں فرق نہیں کرتا، اس لیے کھلاڑیوں میں یہ زیادہ اور بزرگوں میں کم چربی ظاہر کر سکتا ہے۔',
+  },
+  {
+    qEn: 'Does BMI differ for men and women?',
+    aEn: 'The BMI formula itself is the same for both, though women naturally carry a somewhat higher body fat percentage at the same BMI compared to men.',
+    qUr: 'کیا مردوں اور عورتوں کے لیے بی ایم آئی مختلف ہوتا ہے؟',
+    aUr: 'بی ایم آئی کا فارمولا دونوں کے لیے ایک جیسا ہے، البتہ خواتین میں قدرتی طور پر اسی بی ایم آئی پر مردوں کی نسبت تھوڑی زیادہ چربی ہو سکتی ہے۔',
+  },
+  {
+    qEn: 'Should I use metric or imperial units?',
+    aEn: 'Either works — this calculator supports both cm/kg and feet-inches/lbs, and gives the same accurate result regardless of which system you choose.',
+    qUr: 'مجھے میٹرک یا امپیریل یونٹس استعمال کرنے چاہئیں؟',
+    aUr: 'دونوں ٹھیک ہیں — یہ کیلکولیٹر سینٹی میٹر/کلوگرام اور فٹ انچ/پاؤنڈ دونوں سپورٹ کرتا ہے اور ہر صورت میں درست نتیجہ دیتا ہے۔',
+  },
+]
 
 const UNIT_OPTIONS = [
   { value: 'metric', label: 'Metric (cm, kg)', icon: '📏' },
@@ -41,6 +73,8 @@ export default function Bmi() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.bmi} />
+      <Breadcrumb toolEn="BMI Calculator" toolUr="بی ایم آئی کیلکولیٹر" path="/bmi-calculator" />
       <div className="calc-header">
         <h1 className="en-only">BMI Calculator</h1>
         <h1 className="ur-only ur-text">بی ایم آئی کیلکولیٹر</h1>
@@ -85,8 +119,8 @@ export default function Bmi() {
         )}
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate BMI</span>
-          <span className="ur-only ur-text">بی ایم آئی کا حساب لگائیں</span>
+          <span className="en-only">✨ Calculate BMI</span>
+          <span className="ur-only ur-text">✨ بی ایم آئی کا حساب لگائیں</span>
         </button>
 
         {result && (
@@ -127,6 +161,9 @@ export default function Bmi() {
     <p>18.5 سے کم — کم وزن<br/>18.5–24.9 — نارمل<br/>25.0–29.9 — زیادہ وزن<br/>30.0+ — موٹاپا</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/bmi-calculator" />
     </div>
   )
 }

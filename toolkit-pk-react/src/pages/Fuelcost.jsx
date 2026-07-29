@@ -1,5 +1,37 @@
 import { useEffect, useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is trip fuel cost calculated?',
+    aEn: "Divide the trip distance by your vehicle's fuel efficiency to get litres needed, then multiply by the current fuel price per litre.",
+    qUr: 'سفر کا فیول خرچہ کیسے نکالا جاتا ہے؟',
+    aUr: 'سفر کی مسافت کو اپنی گاڑی کی فیول ایفیشنسی سے تقسیم کر کے درکار لیٹرز معلوم کریں، پھر موجودہ فی لیٹر قیمت سے ضرب دیں۔',
+  },
+  {
+    qEn: 'Where does the fuel price used in this calculator come from?',
+    aEn: 'You can enter the current petrol/diesel price yourself, since prices are revised periodically by the government and vary slightly by region.',
+    qUr: 'اس کیلکولیٹر میں استعمال ہونے والی فیول قیمت کہاں سے آتی ہے؟',
+    aUr: 'آپ خود موجودہ پیٹرول/ڈیزل قیمت درج کر سکتے ہیں، کیونکہ قیمتیں حکومت کی طرف سے وقتاً فوقتاً تبدیل ہوتی رہتی ہیں اور علاقے کے حساب سے تھوڑی مختلف ہو سکتی ہیں۔',
+  },
+  {
+    qEn: 'Does fuel price vary across Pakistan?',
+    aEn: 'The government sets one official price nationwide, though remote areas like Gilgit-Baltistan, Chitral, and Azad Kashmir may see a slightly higher price due to transport costs.',
+    qUr: 'کیا پاکستان میں فیول قیمت مختلف علاقوں میں مختلف ہے؟',
+    aUr: 'حکومت پورے ملک کے لیے ایک ہی سرکاری قیمت مقرر کرتی ہے، البتہ گلگت بلتستان، چترال اور آزاد کشمیر جیسے دور دراز علاقوں میں ترسیل کے اخراجات کی وجہ سے تھوڑا اضافہ ہو سکتا ہے۔',
+  },
+  {
+    qEn: 'Can I use this for both petrol and diesel vehicles?',
+    aEn: "Yes, simply enter your vehicle's actual mileage and the current price of whichever fuel type it uses.",
+    qUr: 'کیا یہ پیٹرول اور ڈیزل دونوں گاڑیوں کے لیے استعمال ہو سکتا ہے؟',
+    aUr: 'جی ہاں، بس اپنی گاڑی کی اصل مائلیج اور استعمال ہونے والے فیول کی موجودہ قیمت درج کریں۔',
+  },
+]
 
 /* ------------------------------------------------------------------
    Pakistan's petrol/diesel prices are fixed nationally by OGRA every
@@ -67,6 +99,8 @@ export default function FuelCost() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.fuelCost} />
+      <Breadcrumb toolEn="Petrol / Fuel Cost" toolUr="پیٹرول لاگت کیلکولیٹر" path="/fuel-cost-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Petrol / Fuel Cost Calculator</h1>
         <h1 className="ur-only ur-text">پیٹرول / فیول خرچہ کیلکولیٹر</h1>
@@ -114,8 +148,8 @@ export default function FuelCost() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate Fuel Cost</span>
-          <span className="ur-only ur-text">فیول خرچہ نکالیں</span>
+          <span className="en-only">✨ Calculate Fuel Cost</span>
+          <span className="ur-only ur-text">✨ فیول خرچہ نکالیں</span>
         </button>
 
         {result && (
@@ -166,6 +200,9 @@ export default function FuelCost() {
           <p>حکومت پورے ملک کے لیے ایک ہی سرکاری قیمت مقرر کرتی ہے، البتہ گلگت بلتستان، چترال اور آزاد کشمیر جیسے دور دراز علاقوں میں ترسیل کے اخراجات کی وجہ سے تھوڑا اضافہ ہو سکتا ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/fuel-cost-calculator" />
     </div>
   )
 }

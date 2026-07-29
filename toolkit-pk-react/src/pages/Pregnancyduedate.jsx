@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import DatePicker from '../components/DatePicker.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is the due date calculated?',
+    aEn: 'The standard method adds 280 days (40 weeks) to the first day of your last menstrual period to estimate the due date.',
+    qUr: 'متوقع تاریخ کیسے نکالی جاتی ہے؟',
+    aUr: 'معیاری طریقہ آپ کی آخری ماہواری کے پہلے دن میں 280 دن (40 ہفتے) شامل کر کے متوقع تاریخ کا اندازہ لگاتا ہے۔',
+  },
+  {
+    qEn: 'How accurate is this due date estimate?',
+    aEn: 'This is only an estimate — only about 5% of babies are born exactly on their due date, so consult your doctor for confirmation via ultrasound.',
+    qUr: 'یہ متوقع تاریخ کتنی درست ہے؟',
+    aUr: 'یہ صرف ایک تخمینہ ہے — صرف تقریباً 5% بچے اپنی متوقع تاریخ پر پیدا ہوتے ہیں، اس لیے درست معلومات کے لیے اپنے ڈاکٹر سے الٹراساؤنڈ کے ذریعے تصدیق کروائیں۔',
+  },
+  {
+    qEn: 'What if I have an irregular menstrual cycle?',
+    aEn: 'For irregular cycles, this estimate may be less accurate, and an ultrasound-based due date from your doctor will give a more reliable result.',
+    qUr: 'اگر میری ماہواری بے قاعدہ ہو تو کیا ہوگا؟',
+    aUr: 'بے قاعدہ ماہواری کی صورت میں یہ تخمینہ کم درست ہو سکتا ہے، اور ڈاکٹر کے الٹراساؤنڈ سے حاصل متوقع تاریخ زیادہ قابل اعتماد ہوگی۔',
+  },
+  {
+    qEn: 'How many weeks is a full-term pregnancy?',
+    aEn: 'A full-term pregnancy is generally considered to be 37 to 40 weeks, with babies born before 37 weeks classified as premature.',
+    qUr: 'مکمل مدت کا حمل کتنے ہفتوں کا ہوتا ہے؟',
+    aUr: 'مکمل مدت کا حمل عام طور پر 37 سے 40 ہفتے کا سمجھا جاتا ہے، 37 ہفتوں سے پہلے پیدا ہونے والے بچے قبل از وقت شمار ہوتے ہیں۔',
+  },
+]
 
 // Approximate size-comparison per pregnancy week (fun, easy-to-grasp reference)
 const SIZE_BY_WEEK = [
@@ -65,6 +97,8 @@ export default function PregnancyDueDate() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.pregnancy} />
+      <Breadcrumb toolEn="Pregnancy Due Date" toolUr="حمل کی تاریخ" path="/pregnancy-due-date-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Pregnancy Due Date Calculator</h1>
         <h1 className="ur-only ur-text">حمل کی متوقع تاریخ کیلکولیٹر</h1>
@@ -159,6 +193,9 @@ export default function PregnancyDueDate() {
           <p>یہ صرف ایک تخمینہ ہے۔ درست معلومات کے لیے اپنے ڈاکٹر سے الٹراساؤنڈ کے ذریعے تصدیق کروائیں۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/pregnancy-due-date-calculator" />
     </div>
   )
 }

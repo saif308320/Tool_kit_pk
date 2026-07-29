@@ -1,4 +1,36 @@
 import { useMemo, useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'What does this tool count besides words?',
+    aEn: 'Along with word count, it shows character count (with and without spaces), sentence count, paragraph count, and estimated reading time.',
+    qUr: 'یہ ٹول الفاظ کے علاوہ اور کیا شمار کرتا ہے؟',
+    aUr: 'الفاظ کی گنتی کے ساتھ یہ حروف کی تعداد (اسپیس کے ساتھ اور بغیر)، جملوں کی تعداد، پیراگراف کی تعداد، اور اندازاً پڑھنے کا وقت بھی دکھاتا ہے۔',
+  },
+  {
+    qEn: 'Who uses a word counter?',
+    aEn: 'Students, writers, and content creators use word counters to meet word limits or character limits for assignments, articles, or social media posts.',
+    qUr: 'ورڈ کاؤنٹر کون استعمال کرتا ہے؟',
+    aUr: 'طالب علم، لکھاری اور کانٹینٹ رائٹرز ورڈ کاؤنٹر استعمال کرتے ہیں تاکہ الفاظ کی حد یا کریکٹر لمٹ پوری کی جا سکے۔',
+  },
+  {
+    qEn: 'Does this tool store or save my text?',
+    aEn: 'No, all counting happens instantly in your browser — your text is never sent to or stored on any server.',
+    qUr: 'کیا یہ ٹول میرا ٹیکسٹ محفوظ کرتا ہے؟',
+    aUr: 'نہیں، تمام گنتی آپ کے براؤزر میں فوری ہوتی ہے — آپ کا ٹیکسٹ کبھی کسی سرور پر نہیں بھیجا جاتا۔',
+  },
+  {
+    qEn: 'How is reading time estimated?',
+    aEn: 'Reading time is estimated based on an average adult reading speed of around 200-250 words per minute.',
+    qUr: 'پڑھنے کا وقت کیسے اندازہ لگایا جاتا ہے؟',
+    aUr: 'پڑھنے کا وقت اوسط بالغ فرد کی 200-250 الفاظ فی منٹ پڑھنے کی رفتار کی بنیاد پر اندازہ لگایا جاتا ہے۔',
+  },
+]
 
 const PLATFORMS = [
   { key: 'sms', en: 'SMS', ur: 'ایس ایم ایس', limit: 160 },
@@ -24,6 +56,8 @@ export default function WordCounter() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.wordCounter} />
+      <Breadcrumb toolEn="Word & Character Counter" toolUr="ورڈ کاؤنٹر" path="/word-counter" />
       <div className="calc-header">
         <h1 className="en-only">Word & Character Counter</h1>
         <h1 className="ur-only ur-text">لفظ اور حروف شمار کرنے والا</h1>
@@ -95,6 +129,9 @@ export default function WordCounter() {
           <p>طالب علم، لکھاری اور کانٹینٹ رائٹرز ورڈ کاؤنٹر استعمال کرتے ہیں تاکہ الفاظ کی حد یا کریکٹر لمٹ پوری کی جا سکے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/word-counter" />
     </div>
   )
 }

@@ -1,4 +1,36 @@
 import { useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'What is BMR?',
+    aEn: 'BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest just to keep your organs functioning.',
+    qUr: 'بی ایم آر کیا ہے؟',
+    aUr: 'بی ایم آر (بیسل میٹابولک ریٹ) وہ کیلوریز ہیں جو آپ کا جسم مکمل آرام کی حالت میں صرف اعضاء کو چلانے کے لیے خرچ کرتا ہے۔',
+  },
+  {
+    qEn: 'What is the difference between BMR and TDEE?',
+    aEn: 'TDEE (Total Daily Energy Expenditure) adds your activity level on top of BMR, giving the actual number of calories you burn in a full day.',
+    qUr: 'بی ایم آر اور ٹی ڈی ای ای میں کیا فرق ہے؟',
+    aUr: 'ٹی ڈی ای ای (کل روزانہ توانائی خرچ) بی ایم آر کے ساتھ آپ کی سرگرمی شامل کر کے پورے دن میں خرچ ہونے والی اصل کیلوریز بتاتا ہے۔',
+  },
+  {
+    qEn: 'How many calories should I eat to lose weight?',
+    aEn: 'A common approach is eating 300–500 calories below your TDEE per day, which typically leads to steady, sustainable weight loss over time.',
+    qUr: 'وزن کم کرنے کے لیے کتنی کیلوریز کھانی چاہئیں؟',
+    aUr: 'ایک عام طریقہ یہ ہے کہ روزانہ اپنی ٹی ڈی ای ای سے 300–500 کیلوریز کم کھائیں، جس سے وقت کے ساتھ مستحکم وزن کمی ہوتی ہے۔',
+  },
+  {
+    qEn: 'Is this calculator accurate for everyone?',
+    aEn: 'It uses standard formulas (Mifflin-St Jeor) that are accurate for most people, though individual metabolism can vary based on genetics and health conditions.',
+    qUr: 'کیا یہ کیلکولیٹر سب کے لیے درست ہے؟',
+    aUr: 'یہ معیاری فارمولا (Mifflin-St Jeor) استعمال کرتا ہے جو زیادہ تر لوگوں کے لیے درست ہے، تاہم انفرادی میٹابولزم جینز اور صحت پر منحصر ہو کر مختلف ہو سکتا ہے۔',
+  },
+]
 
 const ACTIVITY = [
   { key: '1.2', en: 'Sedentary (little/no exercise)', ur: 'کم و بیش ورزش نہیں' },
@@ -44,6 +76,8 @@ export default function CalorieCalculator() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.calorie} />
+      <Breadcrumb toolEn="Calorie / BMR Calculator" toolUr="کیلوری کیلکولیٹر" path="/calorie-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Calorie / BMR Calculator</h1>
         <h1 className="ur-only ur-text">کیلوری / بی ایم آر کیلکولیٹر</h1>
@@ -91,8 +125,8 @@ export default function CalorieCalculator() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate</span>
-          <span className="ur-only ur-text">حساب لگائیں</span>
+          <span className="en-only">✨ Calculate</span>
+          <span className="ur-only ur-text">✨ حساب لگائیں</span>
         </button>
 
         {result && (
@@ -160,6 +194,9 @@ export default function CalorieCalculator() {
           <p>یہ آپ کے BMR کے ساتھ آپ کی سرگرمی شامل کر کے روزانہ کل درکار کیلوریز بتاتا ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/calorie-calculator" />
     </div>
   )
 }

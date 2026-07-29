@@ -1,4 +1,36 @@
 import { useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is my electricity bill estimated?',
+    aEn: 'The estimate multiplies your entered units consumed by the applicable per-unit tariff slab rates used in Pakistan, giving an approximate bill amount.',
+    qUr: 'میرا بجلی بل کیسے تخمینہ کیا جاتا ہے؟',
+    aUr: 'یہ تخمینہ آپ کے درج کردہ استعمال شدہ یونٹس کو پاکستان میں لاگو فی یونٹ سلیب ریٹ سے ضرب دے کر تقریبی بل رقم بتاتا ہے۔',
+  },
+  {
+    qEn: 'Why do electricity tariffs increase in slabs?',
+    aEn: 'Pakistan uses a slab-based tariff system where the per-unit rate increases as your total monthly consumption crosses certain thresholds, to encourage conservation.',
+    qUr: 'بجلی کے ٹیرف سلیبس میں کیوں بڑھتے ہیں؟',
+    aUr: 'پاکستان میں سلیب کی بنیاد پر ٹیرف سسٹم ہے جہاں آپ کے ماہانہ استعمال کے مخصوص حد سے بڑھنے پر فی یونٹ ریٹ بڑھ جاتا ہے، تاکہ بجلی بچت کی حوصلہ افزائی ہو۔',
+  },
+  {
+    qEn: 'Can I reduce my bill by using less electricity?',
+    aEn: 'Yes, using energy-efficient appliances and LED bulbs can keep your usage within a lower slab, reducing your average per-unit rate.',
+    qUr: 'کیا کم بجلی استعمال کر کے بل کم کیا جا سکتا ہے؟',
+    aUr: 'جی ہاں، توانائی بچانے والے آلات اور ایل ای ڈی بلب استعمال کر کے آپ اپنا استعمال کم سلیب میں رکھ سکتے ہیں۔',
+  },
+  {
+    qEn: 'Does this include taxes and surcharges?',
+    aEn: 'This is a simplified estimate based on unit rates; your actual bill may also include taxes, fuel price adjustments, and other surcharges from your electricity provider.',
+    qUr: 'کیا اس میں ٹیکس اور سرچارج شامل ہیں؟',
+    aUr: 'یہ ایک آسان تخمینہ ہے جو یونٹ ریٹ پر مبنی ہے؛ آپ کے اصل بل میں ٹیکس، فیول ایڈجسٹمنٹ اور دیگر سرچارج بھی شامل ہو سکتے ہیں۔',
+  },
+]
 
 const SLABS = [
   { upto: 50, rate: 8 },
@@ -43,6 +75,8 @@ export default function ElectricityBill() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.electricityBill} />
+      <Breadcrumb toolEn="Electricity Bill Estimator" toolUr="بجلی بل تخمینہ" path="/electricity-bill-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Electricity Bill Calculator</h1>
         <h1 className="ur-only ur-text">بجلی بل کیلکولیٹر</h1>
@@ -59,8 +93,8 @@ export default function ElectricityBill() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Estimate Bill</span>
-          <span className="ur-only ur-text">بل کا اندازہ لگائیں</span>
+          <span className="en-only">✨ Estimate Bill</span>
+          <span className="ur-only ur-text">✨ بل کا اندازہ لگائیں</span>
         </button>
 
         {result && (
@@ -139,6 +173,9 @@ export default function ElectricityBill() {
           <p>توانائی بچانے والے آلات اور ایل ای ڈی بلب استعمال کر کے آپ اپنا استعمال کم سلیب میں رکھ سکتے ہیں۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/electricity-bill-calculator" />
     </div>
   )
 }

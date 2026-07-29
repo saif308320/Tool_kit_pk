@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is age calculated in years, months, and days?',
+    aEn: "The calculator subtracts your date of birth from today's date, accounting for varying month lengths and leap years, to give an exact breakdown in years, months, and days.",
+    qUr: 'عمر سالوں، مہینوں اور دنوں میں کیسے شمار ہوتی ہے؟',
+    aUr: 'یہ کیلکولیٹر آپ کی تاریخ پیدائش کو آج کی تاریخ سے منہا کرتا ہے، مہینوں کی مختلف لمبائی اور لیپ سال کو مدنظر رکھتے ہوئے سال، مہینے اور دن میں درست نتیجہ دیتا ہے۔',
+  },
+  {
+    qEn: 'Why do I need an exact age calculation?',
+    aEn: 'Job applications, university admissions, visa forms, and government documents in Pakistan often require your exact age in years, months, and days, not just years.',
+    qUr: 'درست عمر کے حساب کی ضرورت کیوں پڑتی ہے؟',
+    aUr: 'نوکری کی درخواستوں، داخلوں، ویزا فارمز اور سرکاری دستاویزات میں اکثر صرف سال نہیں بلکہ سال، مہینے اور دن میں درست عمر درکار ہوتی ہے۔',
+  },
+  {
+    qEn: 'Does this calculator account for leap years?',
+    aEn: 'Yes, the calculation automatically adjusts for leap years and different month lengths so the result stays accurate no matter what date range you enter.',
+    qUr: 'کیا یہ کیلکولیٹر لیپ سال کو مدنظر رکھتا ہے؟',
+    aUr: 'جی ہاں، یہ حساب خودکار طور پر لیپ سال اور مہینوں کی مختلف لمبائی کے مطابق ایڈجسٹ ہو جاتا ہے تاکہ نتیجہ ہمیشہ درست رہے۔',
+  },
+  {
+    qEn: 'Can I calculate age as of a future or past date?',
+    aEn: "Yes, you can set a custom 'as of' date instead of today to see what your age was, or will be, on any specific date.",
+    qUr: 'کیا میں مستقبل یا ماضی کی کسی تاریخ تک عمر معلوم کر سکتا ہوں؟',
+    aUr: 'جی ہاں، آپ آج کے بجائے کوئی اور تاریخ منتخب کر کے دیکھ سکتے ہیں کہ اس دن آپ کی عمر کتنی تھی یا ہوگی۔',
+  },
+]
 
 const MONTHS = [
   { value: 1, en: 'January', ur: 'جنوری' },
@@ -111,6 +143,8 @@ export default function Age() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.age} />
+      <Breadcrumb toolEn="Age Calculator" toolUr="عمر کیلکولیٹر" path="/age-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Age Calculator</h1>
         <h1 className="ur-only ur-text">عمر کیلکولیٹر</h1>
@@ -236,6 +270,9 @@ export default function Age() {
     <p>یہ نوکری کی درخواستوں، داخلوں، ویزا فارمز اور دیگر سرکاری دستاویزات کے لیے مفید ہے، جہاں سال، مہینے اور دن میں عمر درکار ہوتی ہے۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/age-calculator" />
     </div>
   )
 }

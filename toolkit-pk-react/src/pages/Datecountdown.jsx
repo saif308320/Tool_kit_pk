@@ -1,5 +1,37 @@
 import { useEffect, useRef, useState } from 'react'
 import DatePicker from '../components/DatePicker.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'Does the countdown update automatically?',
+    aEn: 'Yes, once started the countdown updates live every second in your browser, showing the exact days, hours, minutes, and seconds remaining.',
+    qUr: 'کیا کاؤنٹ ڈاؤن خودکار طور پر اپڈیٹ ہوتا ہے؟',
+    aUr: 'جی ہاں، شروع ہونے کے بعد کاؤنٹ ڈاؤن ہر سیکنڈ آپ کے براؤزر میں لائیو اپڈیٹ ہوتا ہے اور باقی دن، گھنٹے، منٹ اور سیکنڈ دکھاتا ہے۔',
+  },
+  {
+    qEn: 'Can I count down to a date that has already passed?',
+    aEn: 'Yes, if you select a past date, the tool switches to showing how much time has elapsed since that date instead of counting down.',
+    qUr: 'کیا میں گزری ہوئی تاریخ کے لیے بھی گنتی کر سکتا ہوں؟',
+    aUr: 'جی ہاں، اگر آپ گزری ہوئی تاریخ منتخب کریں تو یہ ٹول کاؤنٹ ڈاؤن کے بجائے یہ دکھاتا ہے کہ اس تاریخ کو گزرے کتنا وقت ہو چکا ہے۔',
+  },
+  {
+    qEn: 'What can I use this countdown for?',
+    aEn: "It's commonly used for birthdays, weddings, exams, national days, or any important upcoming date you want to track precisely.",
+    qUr: 'یہ کاؤنٹ ڈاؤن کس کام آ سکتا ہے؟',
+    aUr: 'یہ عام طور پر سالگرہ، شادی، امتحان، قومی دن یا کسی بھی اہم آنے والی تاریخ کے لیے استعمال ہوتا ہے۔',
+  },
+  {
+    qEn: 'Is my selected date saved anywhere?',
+    aEn: 'No, everything runs locally in your browser — the date you choose is never sent to or stored on any server.',
+    qUr: 'کیا میری منتخب کردہ تاریخ کہیں محفوظ ہوتی ہے؟',
+    aUr: 'نہیں، سب کچھ آپ کے براؤزر میں ہی ہوتا ہے — آپ کی منتخب کردہ تاریخ کبھی کسی سرور پر نہیں بھیجی جاتی۔',
+  },
+]
 
 function nextOccurrence(month, day) {
   const now = new Date()
@@ -56,6 +88,8 @@ export default function DateCountdown() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.dateCountdown} />
+      <Breadcrumb toolEn="Date Countdown" toolUr="تاریخ کاؤنٹ ڈاؤن" path="/date-countdown-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Date Countdown Calculator</h1>
         <h1 className="ur-only ur-text">تاریخ کاؤنٹ ڈاؤن کیلکولیٹر</h1>
@@ -83,8 +117,8 @@ export default function DateCountdown() {
         </div>
 
         <button className="btn" onClick={() => start()}>
-          <span className="en-only">Start Countdown</span>
-          <span className="ur-only ur-text">کاؤنٹ ڈاؤن شروع کریں</span>
+          <span className="en-only">✨ Start Countdown</span>
+          <span className="ur-only ur-text">✨ کاؤنٹ ڈاؤن شروع کریں</span>
         </button>
 
         {remain && !remain.done && (
@@ -134,6 +168,9 @@ export default function DateCountdown() {
           <p>سالگرہ، شادی، امتحان، قومی دن یا کسی بھی اہم آنے والی تاریخ کے لیے یہ کاؤنٹ ڈاؤن استعمال کریں — یہ ہر سیکنڈ لائیو اپڈیٹ ہوتا ہے۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/date-countdown-calculator" />
     </div>
   )
 }

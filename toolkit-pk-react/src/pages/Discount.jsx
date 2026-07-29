@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is the discounted price calculated?',
+    aEn: 'Multiply the original price by the discount percentage to find the amount saved, then subtract that from the original price to get the final price.',
+    qUr: 'ڈسکاؤنٹ کی قیمت کیسے نکالی جاتی ہے؟',
+    aUr: 'اصل قیمت کو ڈسکاؤنٹ فیصد سے ضرب دے کر بچت کی رقم معلوم کریں، پھر اسے اصل قیمت سے منہا کر کے حتمی قیمت حاصل کریں۔',
+  },
+  {
+    qEn: 'Can I calculate multiple discounts stacked together?',
+    aEn: 'Stacked discounts are applied one after another on the reduced price, not added together — for example 20% then 10% off is not the same as 30% off.',
+    qUr: 'کیا میں ایک ساتھ کئی ڈسکاؤنٹ لگا سکتا ہوں؟',
+    aUr: 'ایک سے زیادہ ڈسکاؤنٹ باری باری کم شدہ قیمت پر لگتے ہیں، جمع نہیں ہوتے — مثلاً 20% پھر 10% کا مطلب 30% ڈسکاؤنٹ نہیں ہوتا۔',
+  },
+  {
+    qEn: 'How much would I save on a discounted item?',
+    aEn: 'If a jacket costs Rs. 4,000 and is on a 25% sale, you would save Rs. 1,000, making the final price Rs. 3,000.',
+    qUr: 'کسی ڈسکاؤنٹ آئٹم پر میں کتنا بچاؤں گا؟',
+    aUr: 'اگر کسی جیکٹ کی اصل قیمت 4,000 روپے ہے اور 25% سیل ہے، تو آپ 1,000 روپے بچائیں گے، اور حتمی قیمت 3,000 روپے ہوگی۔',
+  },
+  {
+    qEn: 'Does this work for reverse discount (finding the original price)?',
+    aEn: 'This calculator focuses on finding the final price and savings from the original price and discount percentage you enter.',
+    qUr: 'کیا یہ الٹا ڈسکاؤنٹ (اصل قیمت معلوم کرنا) بھی نکال سکتا ہے؟',
+    aUr: 'یہ کیلکولیٹر آپ کی درج کردہ اصل قیمت اور ڈسکاؤنٹ فیصد سے حتمی قیمت اور بچت نکالنے پر مرکوز ہے۔',
+  },
+]
 
 const MODE_OPTIONS = [
   { value: 'mode1', label: 'Find Sale Price (I know the discount %)', icon: '🏷️' },
@@ -31,6 +63,8 @@ export default function Discount() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.discount} />
+      <Breadcrumb toolEn="Discount Calculator" toolUr="ڈسکاؤنٹ کیلکولیٹر" path="/discount-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Discount Calculator</h1>
         <h1 className="ur-only ur-text">ڈسکاؤنٹ کیلکولیٹر</h1>
@@ -69,8 +103,8 @@ export default function Discount() {
         )}
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate</span>
-          <span className="ur-only ur-text">حساب لگائیں</span>
+          <span className="en-only">✨ Calculate</span>
+          <span className="ur-only ur-text">✨ حساب لگائیں</span>
         </button>
 
         {result && (
@@ -105,6 +139,9 @@ export default function Discount() {
     <p>اگر کسی جیکٹ کی اصل قیمت 4,000 روپے ہے اور 25% سیل ہے، تو آپ 1,000 روپے بچائیں گے، اور حتمی قیمت 3,000 روپے ہوگی۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/discount-calculator" />
     </div>
   )
 }

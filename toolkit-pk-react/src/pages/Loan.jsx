@@ -1,4 +1,36 @@
 import { useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is monthly EMI calculated?',
+    aEn: 'EMI is calculated based on the loan amount, annual interest rate, and loan tenure in months, using a standard amortization formula.',
+    qUr: 'ماہانہ ای ایم آئی کیسے نکالی جاتی ہے؟',
+    aUr: 'ای ایم آئی کا حساب قرض کی رقم، سالانہ شرح سود، اور قرض کی مدت (مہینوں میں) کی بنیاد پر لگایا جاتا ہے۔',
+  },
+  {
+    qEn: 'Why do early payments mostly go toward interest?',
+    aEn: "In the early months of a loan, more of your EMI goes toward interest since it's calculated on the outstanding principal, which is highest at the start.",
+    qUr: 'ابتدائی ادائیگیاں زیادہ تر سود میں کیوں جاتی ہیں؟',
+    aUr: 'قرض کے شروع کے مہینوں میں آپ کی ای ایم آئی کا بڑا حصہ سود میں جاتا ہے کیونکہ یہ باقی ماندہ اصل رقم پر لگتا ہے جو شروع میں سب سے زیادہ ہوتی ہے۔',
+  },
+  {
+    qEn: 'Does a longer loan tenure reduce total cost?',
+    aEn: 'A longer tenure lowers your monthly EMI but increases the total interest paid over the life of the loan, so overall cost is usually higher.',
+    qUr: 'کیا لمبی قرض مدت سے کل لاگت کم ہوتی ہے؟',
+    aUr: 'لمبی مدت ماہانہ ای ایم آئی کم کرتی ہے لیکن قرض کی پوری مدت میں ادا کیا گیا کل سود بڑھ جاتا ہے، اس لیے مجموعی لاگت عام طور پر زیادہ ہوتی ہے۔',
+  },
+  {
+    qEn: 'What loan types can I use this calculator for?',
+    aEn: 'This works for any fixed-rate installment loan — personal loans, car loans, home loans, or business financing — as long as you know the rate and tenure.',
+    qUr: 'یہ کیلکولیٹر کس قسم کے قرضوں کے لیے استعمال کر سکتا ہوں؟',
+    aUr: 'یہ کسی بھی فکسڈ ریٹ قسطوں والے قرض کے لیے کام کرتا ہے — ذاتی قرض، گاڑی کا قرض، گھر کا قرض یا کاروباری فنانسنگ — بشرطیکہ آپ کو شرح اور مدت معلوم ہو۔',
+  },
+]
 
 export default function Loan() {
   const [principal, setPrincipal] = useState('')
@@ -33,6 +65,8 @@ export default function Loan() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.loan} />
+      <Breadcrumb toolEn="Loan / EMI Calculator" toolUr="قرض / قسط کیلکولیٹر" path="/loan-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Loan / EMI Calculator</h1>
         <h1 className="ur-only ur-text">قرض / قسط کیلکولیٹر</h1>
@@ -57,8 +91,8 @@ export default function Loan() {
         </div>
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate EMI</span>
-          <span className="ur-only ur-text">قسط کا حساب لگائیں</span>
+          <span className="en-only">✨ Calculate EMI</span>
+          <span className="ur-only ur-text">✨ قسط کا حساب لگائیں</span>
         </button>
 
         {result && (
@@ -106,6 +140,9 @@ export default function Loan() {
     <p>ای ایم آئی کا حساب قرض کی رقم، سالانہ شرح سود، اور قرض کی مدت (مہینوں میں) کی بنیاد پر لگایا جاتا ہے۔ شروع کے مہینوں میں زیادہ رقم سود میں جاتی ہے، اور بعد میں زیادہ رقم اصل قرض کم کرنے میں۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/loan-calculator" />
     </div>
   )
 }

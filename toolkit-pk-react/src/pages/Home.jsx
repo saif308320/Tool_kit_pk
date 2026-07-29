@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import TypeText from '../components/TypeText.jsx'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import { useToolHistory } from '../hooks/useToolHistory.js'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
 
 const TYPE_WORDS_EN = ['Zakat', 'Currency', 'Loan / EMI', 'Salary Tax', 'BMI', 'Age', 'Percentage', 'Unit', 'Discount', 'GPA']
 const TYPE_WORDS_UR = ['زکوٰۃ', 'کرنسی', 'قرض / قسط', 'تنخواہ ٹیکس', 'بی ایم آئی', 'عمر', 'فیصد', 'یونٹ', 'ڈسکاؤنٹ', 'جی پی اے']
@@ -99,13 +102,38 @@ const TRUST_UR = [
 function ToolCard({ t, cat, idx }) {
   const { lang } = useLanguage()
 
+  function getShareData() {
+    const url = `${window.location.origin}${t.href}`
+    const label = lang === 'ur' ? t.ur : t.en
+    return { url, label }
+  }
+
   function shareOnWhatsApp(e) {
     e.preventDefault()
     e.stopPropagation()
-    const url = `${window.location.origin}${t.href}`
-    const label = lang === 'ur' ? t.ur : t.en
-    const text = `${label} — ${url}`
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+    const { url, label } = getShareData()
+    window.open(`https://wa.me/?text=${encodeURIComponent(`${label} — ${url}`)}`, '_blank', 'noopener,noreferrer')
+  }
+
+  function shareOnFacebook(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const { url } = getShareData()
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer')
+  }
+
+  function shareOnLinkedIn(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const { url } = getShareData()
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer')
+  }
+
+  function shareOnTwitter(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const { url, label } = getShareData()
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(label)}&url=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -130,19 +158,60 @@ function ToolCard({ t, cat, idx }) {
           ابھی آزمائیں
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'scaleX(-1)' }}><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
-        <button type="button" className="tool-card-share" onClick={shareOnWhatsApp} aria-label="Share on WhatsApp" title="Share on WhatsApp">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.44.79 3.06 1.2 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91.01-5.46-4.44-9.91-9.9-9.91zm5.8 14.05c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.93 0-1.4.73-2.08 1-2.36.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.17.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.93.92.28.14.47.21.54.33.07.13.07.72-.17 1.4z"/>
-          </svg>
-        </button>
+        <div className="tool-card-share-group" onClick={(e) => e.stopPropagation()}>
+          <button type="button" className="tool-card-share share-whatsapp" onClick={shareOnWhatsApp} aria-label="Share on WhatsApp" title="Share on WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.44.79 3.06 1.2 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91.01-5.46-4.44-9.91-9.9-9.91zm5.8 14.05c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.93 0-1.4.73-2.08 1-2.36.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.17.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.61-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.93.92.28.14.47.21.54.33.07.13.07.72-.17 1.4z"/>
+            </svg>
+          </button>
+          <button type="button" className="tool-card-share share-facebook" onClick={shareOnFacebook} aria-label="Share on Facebook" title="Share on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06C2 17.06 5.66 21.2 10.44 21.95v-7.02H7.9v-2.87h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.87h-2.34v7.02C18.34 21.2 22 17.06 22 12.06z"/>
+            </svg>
+          </button>
+          <button type="button" className="tool-card-share share-linkedin" onClick={shareOnLinkedIn} aria-label="Share on LinkedIn" title="Share on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+            </svg>
+          </button>
+          <button type="button" className="tool-card-share share-twitter" onClick={shareOnTwitter} aria-label="Share on X" title="Share on X">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.9L4.4 22H1.3l8.1-9.3L1 2h7.1l4.9 6.3L18.9 2zm-1.2 18h1.9L7.4 4H5.4l12.3 16z"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </Link>
   )
 }
 
+/* Premium quick-access card used in the "Continue Where You Left Off"
+   and "Most Popular Tools" panels — sits inside a CSS grid (no
+   horizontal scroll), so it never breaks on mobile. */
+function QuickToolCard({ t, idx, rank }) {
+  return (
+    <Link className={`quick-card ${t.glow}`} to={t.href} style={{ animationDelay: `${idx * 0.06}s` }}>
+      {rank && <span className="quick-card-rank">#{rank}</span>}
+      <div className="quick-card-icon">
+        <img src={t.icon} alt="" loading="lazy" />
+      </div>
+      <span className="quick-card-label en-only">{t.en}</span>
+      <span className="quick-card-label ur-only ur-text">{t.ur}</span>
+      <span className="quick-card-arrow" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </span>
+    </Link>
+  )
+}
+
 export default function Home() {
+  const { recent, popular } = useToolHistory()
+
   return (
     <div>
+      <SeoHead {...SEO.home} />
       <section className="hero hero-premium">
         <div className="hero-glow hero-glow-1" />
         <div className="hero-glow hero-glow-2" />
@@ -164,6 +233,36 @@ export default function Home() {
           {TRUST_UR.map((t) => (
             <span className="trust-pill" key={t.text}><span className="trust-ico">{t.icon}</span>{t.text}</span>
           ))}
+        </div>
+      </section>
+
+      <section className="quick-access-wrap">
+        {recent.length > 0 && (
+          <div className="quick-panel">
+            <div className="quick-panel-head">
+              <span className="quick-panel-icon">🕒</span>
+              <span className="en-only">Continue Where You Left Off</span>
+              <span className="ur-only ur-text">جہاں سے چھوڑا تھا وہیں سے جاری رکھیں</span>
+            </div>
+            <div className="quick-panel-grid">
+              {recent.map((t, idx) => (
+                <QuickToolCard t={t} idx={idx} key={t.href} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="quick-panel quick-panel-popular">
+          <div className="quick-panel-head">
+            <span className="quick-panel-icon">🔥</span>
+            <span className="en-only">Most Popular Tools</span>
+            <span className="ur-only ur-text">سب سے زیادہ استعمال ہونے والے ٹولز</span>
+          </div>
+          <div className="quick-panel-grid">
+            {popular.map((t, idx) => (
+              <QuickToolCard t={t} idx={idx} rank={idx === 0 ? 1 : null} key={t.href} />
+            ))}
+          </div>
         </div>
       </section>
 

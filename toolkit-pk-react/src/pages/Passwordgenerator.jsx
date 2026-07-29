@@ -1,4 +1,36 @@
 import { useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'Is my generated password stored anywhere?',
+    aEn: 'No — the password is generated securely right in your browser and is never sent to or stored on any server.',
+    qUr: 'کیا میرا بنایا گیا پاسورڈ کہیں محفوظ ہوتا ہے؟',
+    aUr: 'جی ہاں — پاسورڈ آپ کے براؤزر میں ہی محفوظ طریقے سے بنایا جاتا ہے اور کبھی سرور پر نہیں بھیجا جاتا۔',
+  },
+  {
+    qEn: 'What makes a password strong?',
+    aEn: 'A strong password is at least 12-16 characters long and mixes uppercase, lowercase, numbers, and symbols in an unpredictable, random order.',
+    qUr: 'کون سا پاسورڈ مضبوط سمجھا جاتا ہے؟',
+    aUr: 'مضبوط پاسورڈ کم از کم 12-16 حروف کا ہوتا ہے اور اس میں بڑے، چھوٹے حروف، نمبر اور علامات غیر متوقع ترتیب میں شامل ہوتی ہیں۔',
+  },
+  {
+    qEn: 'Should I use the same generated password everywhere?',
+    aEn: "No, it's best practice to generate a unique password for every account, so that if one account is compromised, others remain safe.",
+    qUr: 'کیا مجھے ہر جگہ ایک ہی پاسورڈ استعمال کرنا چاہیے؟',
+    aUr: 'نہیں، ہر اکاؤنٹ کے لیے الگ پاسورڈ بنانا بہتر ہے، تاکہ ایک اکاؤنٹ خطرے میں پڑنے پر باقی محفوظ رہیں۔',
+  },
+  {
+    qEn: 'Can I customize the password length and character types?',
+    aEn: 'Yes, you can adjust the length and choose whether to include uppercase letters, numbers, and special symbols before generating.',
+    qUr: 'کیا میں پاسورڈ کی لمبائی اور حروف کی قسم خود منتخب کر سکتا ہوں؟',
+    aUr: 'جی ہاں، آپ پاسورڈ بننے سے پہلے لمبائی اور بڑے حروف، نمبر اور خاص علامات شامل کرنے یا نہ کرنے کا انتخاب کر سکتے ہیں۔',
+  },
+]
 
 const SETS = {
   lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -49,6 +81,8 @@ export default function PasswordGenerator() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.passwordGenerator} />
+      <Breadcrumb toolEn="Password Generator" toolUr="پاسورڈ جنریٹر" path="/password-generator" />
       <div className="calc-header">
         <h1 className="en-only">Password Generator</h1>
         <h1 className="ur-only ur-text">پاسورڈ جنریٹر</h1>
@@ -140,6 +174,9 @@ export default function PasswordGenerator() {
           <p>جی ہاں — پاسورڈ آپ کے براؤزر میں ہی محفوظ طریقے سے بنایا جاتا ہے اور کبھی سرور پر نہیں بھیجا جاتا۔</p>
         </div>
       </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/password-generator" />
     </div>
   )
 }

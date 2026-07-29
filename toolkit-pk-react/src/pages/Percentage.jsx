@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How do I calculate what percentage one number is of another?',
+    aEn: 'Divide the smaller number by the larger number, then multiply the result by 100 to get the percentage.',
+    qUr: 'ایک نمبر دوسرے کا کتنے فیصد ہے یہ کیسے نکالیں؟',
+    aUr: 'چھوٹے نمبر کو بڑے نمبر سے تقسیم کریں، پھر نتیجے کو 100 سے ضرب دے کر فیصد حاصل کریں۔',
+  },
+  {
+    qEn: 'How do I calculate percentage increase or decrease?',
+    aEn: 'Subtract the old value from the new value, divide by the old value, then multiply by 100 — a positive result means increase, negative means decrease.',
+    qUr: 'فیصد اضافہ یا کمی کیسے نکالی جاتی ہے؟',
+    aUr: 'نئی قدر سے پرانی قدر منہا کریں، پرانی قدر سے تقسیم کریں، پھر 100 سے ضرب دیں — مثبت نتیجہ اضافہ اور منفی کمی ظاہر کرتا ہے۔',
+  },
+  {
+    qEn: 'What are common uses for percentage calculations?',
+    aEn: 'Percentages are commonly used for discounts, exam marks, salary raises, profit margins, tax rates, and comparing changes between two values.',
+    qUr: 'فیصد کے حساب کے عام استعمال کیا ہیں؟',
+    aUr: 'فیصد عام طور پر ڈسکاؤنٹ، امتحانی نمبر، تنخواہ اضافہ، منافع کا مارجن، ٹیکس ریٹ اور دو اقدار کے فرق کا موازنہ کرنے کے لیے استعمال ہوتا ہے۔',
+  },
+  {
+    qEn: 'Can this calculator find the original value before a percentage was applied?',
+    aEn: 'Yes, by entering the final value and the percentage change, you can work backward to find the original number before the change.',
+    qUr: 'کیا یہ کیلکولیٹر فیصد لگنے سے پہلے کی اصل قدر بھی نکال سکتا ہے؟',
+    aUr: 'جی ہاں، حتمی قدر اور فیصد تبدیلی درج کر کے آپ تبدیلی سے پہلے کی اصل تعداد معلوم کر سکتے ہیں۔',
+  },
+]
 
 const MODE_OPTIONS = [
   { value: 'mode1', label: 'X% of Y', icon: '➗' },
@@ -37,6 +69,8 @@ export default function Percentage() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.percentage} />
+      <Breadcrumb toolEn="Percentage Calculator" toolUr="فیصد کیلکولیٹر" path="/percentage-calculator" />
       <div className="calc-header">
         <h1 className="en-only">Percentage Calculator</h1>
         <h1 className="ur-only ur-text">فیصد کیلکولیٹر</h1>
@@ -88,8 +122,8 @@ export default function Percentage() {
         )}
 
         <button className="btn" onClick={calculate}>
-          <span className="en-only">Calculate</span>
-          <span className="ur-only ur-text">حساب لگائیں</span>
+          <span className="en-only">✨ Calculate</span>
+          <span className="ur-only ur-text">✨ حساب لگائیں</span>
         </button>
 
         {result !== null && (
@@ -124,6 +158,9 @@ export default function Percentage() {
     <p><strong>فیصد اضافہ/کمی</strong> — دو اقدار کے درمیان فیصد تبدیلی معلوم کرنا۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/percentage-calculator" />
     </div>
   )
 }

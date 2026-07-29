@@ -1,5 +1,37 @@
 import { useState } from 'react'
 import Select from '../components/Select.jsx'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How is percentage converted to GPA?',
+    aEn: 'Most Pakistani universities use a formula that divides your percentage by 25 (on a 4.0 scale) or by 20 (on a 5.0 scale), though the exact formula can vary by institution.',
+    qUr: 'فیصد کو جی پی اے میں کیسے تبدیل کیا جاتا ہے؟',
+    aUr: 'زیادہ تر پاکستانی جامعات فیصد کو 25 سے تقسیم کر کے (4.0 سکیل پر) یا 20 سے تقسیم کر کے (5.0 سکیل پر) جی پی اے نکالتی ہیں، البتہ فارمولا ادارے کے مطابق مختلف ہو سکتا ہے۔',
+  },
+  {
+    qEn: 'What is CGPA and how is it different from GPA?',
+    aEn: "GPA reflects a single semester's performance, while CGPA is the cumulative average GPA across all completed semesters, weighted by each semester's credit hours.",
+    qUr: 'سی جی پی اے کیا ہے اور جی پی اے سے کیسے مختلف ہے؟',
+    aUr: 'جی پی اے ایک سمسٹر کی کارکردگی ظاہر کرتا ہے، جبکہ سی جی پی اے تمام مکمل شدہ سمسٹرز کے کریڈٹ اوورز کی بنیاد پر اوسط جی پی اے ہوتا ہے۔',
+  },
+  {
+    qEn: 'Is 3.0 GPA considered good?',
+    aEn: 'On a standard 4.0 scale, a 3.0 GPA is generally considered good/above average, though requirements vary by university and specific scholarship or job criteria.',
+    qUr: 'کیا 3.0 جی پی اے اچھا سمجھا جاتا ہے؟',
+    aUr: 'معیاری 4.0 سکیل پر 3.0 جی پی اے عام طور پر اچھا/اوسط سے بہتر سمجھا جاتا ہے، تاہم تقاضے جامعہ اور مخصوص وظیفے یا نوکری کے معیار کے مطابق مختلف ہو سکتے ہیں۔',
+  },
+  {
+    qEn: 'Can I calculate CGPA for multiple semesters at once?',
+    aEn: "Yes, enter each semester's GPA along with its credit hours, and the calculator will compute your weighted cumulative CGPA across all of them.",
+    qUr: 'کیا میں ایک ساتھ کئی سمسٹرز کا سی جی پی اے نکال سکتا ہوں؟',
+    aUr: 'جی ہاں، ہر سمسٹر کا جی پی اے اس کے کریڈٹ اوورز کے ساتھ درج کریں، اور کیلکولیٹر سب کا وزنی مجموعی سی جی پی اے نکال دے گا۔',
+  },
+]
 
 const MODE_OPTIONS = [
   { value: 'mode1', label: 'Percentage to GPA', icon: '📊' },
@@ -54,6 +86,8 @@ export default function Gpa() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.gpa} />
+      <Breadcrumb toolEn="GPA Calculator" toolUr="جی پی اے کیلکولیٹر" path="/gpa-calculator" />
       <div className="calc-header">
         <h1 className="en-only">GPA Calculator</h1>
         <h1 className="ur-only ur-text">جی پی اے کیلکولیٹر</h1>
@@ -74,8 +108,8 @@ export default function Gpa() {
               <input type="number" min="0" max="100" value={percent} onChange={(e) => setPercent(e.target.value)} placeholder="e.g. 82" />
             </div>
             <button className="btn" onClick={calcPercentToGPA}>
-              <span className="en-only">Convert to GPA</span>
-              <span className="ur-only ur-text">جی پی اے میں تبدیل کریں</span>
+              <span className="en-only">✨ Convert to GPA</span>
+              <span className="ur-only ur-text">✨ جی پی اے میں تبدیل کریں</span>
             </button>
             {gpaResult && (
               <div className="result-box show">
@@ -113,8 +147,8 @@ export default function Gpa() {
               <span className="ur-only ur-text">+ سمسٹر شامل کریں</span>
             </button>
             <button className="btn" onClick={calcCGPA}>
-              <span className="en-only">Calculate CGPA</span>
-              <span className="ur-only ur-text">سی جی پی اے کا حساب لگائیں</span>
+              <span className="en-only">✨ Calculate CGPA</span>
+              <span className="ur-only ur-text">✨ سی جی پی اے کا حساب لگائیں</span>
             </button>
             {cgpa !== null && (
               <div className="result-box show">
@@ -146,6 +180,9 @@ export default function Gpa() {
     <p>سی جی پی اے تمام مکمل شدہ سمسٹرز کے کریڈٹ اوورز کی بنیاد پر اوسط جی پی اے ہوتا ہے۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/gpa-calculator" />
     </div>
   )
 }

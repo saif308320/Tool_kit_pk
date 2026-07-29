@@ -1,4 +1,36 @@
 import { useEffect, useRef, useState } from 'react'
+import SeoHead from '../components/SeoHead.jsx'
+import { SEO } from '../seoData.js'
+import Breadcrumb from '../components/Breadcrumb.jsx'
+import FAQ from '../components/FAQ.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+
+const PAGE_FAQS = [
+  {
+    qEn: 'How often are exchange rates updated?',
+    aEn: 'This tool automatically fetches live exchange rates, so you always get an accurate result based on the current market rate.',
+    qUr: 'ایکسچینج ریٹ کتنی بار اپڈیٹ ہوتا ہے؟',
+    aUr: 'یہ ٹول خودکار طور پر لائیو ایکسچینج ریٹ حاصل کرتا ہے، تاکہ آپ کو ہمیشہ موجودہ مارکیٹ ریٹ کے مطابق درست نتیجہ ملے۔',
+  },
+  {
+    qEn: 'Why does the exchange rate keep changing?',
+    aEn: 'Currency value shifts daily based on factors like interest rates, inflation, trade balance, and global demand for that currency.',
+    qUr: 'ایکسچینج ریٹ کیوں بدلتا رہتا ہے؟',
+    aUr: 'کرنسی کی قیمت سود کی شرح، مہنگائی، تجارتی توازن اور عالمی طلب جیسے عوامل کی بنیاد پر روزانہ بدلتی رہتی ہے۔',
+  },
+  {
+    qEn: 'Can I convert PKR to any currency in the world?',
+    aEn: 'Yes, this tool supports converting PKR to and from all major world currencies including USD, SAR, AED, GBP, and more.',
+    qUr: 'کیا میں پی کے آر کو دنیا کی کسی بھی کرنسی میں تبدیل کر سکتا ہوں؟',
+    aUr: 'جی ہاں، یہ ٹول پی کے آر کو تمام بڑی عالمی کرنسیوں جیسے USD, SAR, AED, GBP وغیرہ میں تبدیل کر سکتا ہے۔',
+  },
+  {
+    qEn: 'Is there a fee or markup on this conversion rate?',
+    aEn: 'No, this shows the raw market exchange rate for reference only; actual banks and exchange dealers may apply their own margin on top.',
+    qUr: 'کیا اس کنورژن ریٹ پر کوئی فیس یا مارک اپ ہے؟',
+    aUr: 'نہیں، یہ صرف حوالے کے لیے خام مارکیٹ ریٹ دکھاتا ہے؛ اصل بینک اور ایکسچینج ڈیلرز اپنا مارجن الگ سے لگا سکتے ہیں۔',
+  },
+]
 
 const CURRENCY_NAMES = {
   PKR: 'Pakistani Rupee', USD: 'US Dollar', EUR: 'Euro', GBP: 'British Pound', SAR: 'Saudi Riyal',
@@ -105,6 +137,8 @@ export default function Currency() {
 
   return (
     <div className="calc-wrap">
+      <SeoHead {...SEO.currency} />
+      <Breadcrumb toolEn="Currency Converter" toolUr="کرنسی کنورٹر" path="/currency-converter" />
       <div className="calc-header">
         <h1 className="en-only">Currency Converter</h1>
         <h1 className="ur-only ur-text">کرنسی کنورٹر</h1>
@@ -169,6 +203,9 @@ export default function Currency() {
     <p>کرنسی کی قیمت سود کی شرح، مہنگائی، تجارتی توازن اور عالمی طلب جیسے عوامل کی بنیاد پر روزانہ بدلتی رہتی ہے۔</p>
   </div>
 </article>
+
+      <FAQ items={PAGE_FAQS} />
+      <RelatedCalculators currentHref="/currency-converter" />
     </div>
   )
 }
