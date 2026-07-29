@@ -18,19 +18,113 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(13,148,136,0.07), transparent),
-    radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,0.06), transparent),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  position: relative;
+  isolation: isolate;
 }
 
+/* ============================================================
+   PREMIUM LAYERED AURORA — 2026 SaaS style
+   Layer 1: big slow blobs on a smooth closed elliptical path
+   Layer 2: smaller blobs, different speed + opposite direction
+             (negative delay = desync, gives real "depth" feel)
+   Layer 3: ultra-faint grain so it never looks flat/plastic
+   All motion uses transform only (GPU-friendly, no jank),
+   and every keyframe loop returns to 0% so there's zero snap.
+   ============================================================ */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: -15% -15% auto -15%;
+  height: 950px;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(36% 38% at 18% 22%, rgba(13,148,136,0.18), transparent 70%),
+    radial-gradient(30% 32% at 82% 12%, rgba(34,211,238,0.15), transparent 70%),
+    radial-gradient(28% 30% at 50% 55%, rgba(184,134,11,0.09), transparent 70%);
+  background-repeat: no-repeat;
+  filter: blur(12px) hue-rotate(0deg);
+  transform-origin: center;
+  animation:
+    auroraOrbit1 26s cubic-bezier(0.45,0,0.55,1) infinite,
+    auroraHue 40s linear infinite;
+  will-change: transform;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: -10% -10% auto -10%;
+  height: 700px;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(24% 26% at 70% 30%, rgba(94,234,212,0.14), transparent 70%),
+    radial-gradient(22% 24% at 25% 65%, rgba(34,211,238,0.10), transparent 70%);
+  background-repeat: no-repeat;
+  filter: blur(16px);
+  animation: auroraOrbit2 34s cubic-bezier(0.45,0,0.55,1) infinite;
+  animation-delay: -11s;
+  will-change: transform;
+}
+
+/* Grain overlay — separate fixed layer, always on top of the
+   glow, kills the "flat plastic gradient" look */
+.grain-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Elliptical closed-loop path — smooth drift + gentle breathing
+   scale, first/last keyframe identical so the loop never jumps */
+@keyframes auroraOrbit1 {
+  0%   { transform: translate3d(0%, 0%, 0) scale(1); }
+  20%  { transform: translate3d(-3%, 2.5%, 0) scale(1.05); }
+  40%  { transform: translate3d(-1.5%, 5%, 0) scale(1.08); }
+  60%  { transform: translate3d(2.5%, 3%, 0) scale(1.04); }
+  80%  { transform: translate3d(3%, -1.5%, 0) scale(1.02); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1); }
+}
+
+/* Second layer: smaller amplitude, opposite rotation direction
+   → real parallax "depth" feel instead of everything moving as one */
+@keyframes auroraOrbit2 {
+  0%   { transform: translate3d(0%, 0%, 0) scale(1); }
+  25%  { transform: translate3d(2.5%, -2%, 0) scale(1.06); }
+  50%  { transform: translate3d(-2%, -3.5%, 0) scale(1.1); }
+  75%  { transform: translate3d(-3%, 1.5%, 0) scale(1.03); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1); }
+}
+
+/* Very slow color drift on layer 1 so it never feels static,
+   subtle enough to not clash with brand colors */
+@keyframes auroraHue {
+  0%   { filter: blur(12px) hue-rotate(0deg); }
+  50%  { filter: blur(12px) hue-rotate(12deg); }
+  100% { filter: blur(12px) hue-rotate(0deg); }
+}
+
+@media (max-width: 640px) {
+  body::before { height: 620px; filter: blur(8px); }
+  body::after  { height: 460px; filter: blur(10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none !important; }
+}
 a { text-decoration: none; color: inherit; }
 
 ::selection { background: var(--green-light); color: var(--green-dark); }
@@ -2855,3 +2949,4 @@ body.lang-ur .faq-question { text-align: right; }
   .faq-question { font-size: 14px; padding: 14px; }
   .related-grid { grid-template-columns: 1fr; }
 }
+

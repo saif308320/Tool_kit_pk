@@ -9,6 +9,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
+        <div className="aurora-layer-1" aria-hidden="true"></div>
+        <div className="aurora-layer-2" aria-hidden="true"></div>
+        <div className="grain-layer" aria-hidden="true"></div>
         <App />
       </BrowserRouter>
     </HelmetProvider>
