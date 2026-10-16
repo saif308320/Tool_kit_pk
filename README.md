@@ -1,4 +1,4 @@
-# ToolKitPK 🇵🇰
+# ToolKit 🇵🇰
 
 Free online calculators and tools built for Pakistan.
 
